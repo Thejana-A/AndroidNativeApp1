@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".MainActivity"
+    tools:visibility="visible">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="142dp"
+        android:layout_height="153dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.260"
+        app:srcCompat="@drawable/logo_splash_4" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="321dp"
+        android:layout_height="320dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.640">
+
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="284dp"
+            android:layout_height="80dp"
+            android:text="Let's get started !"
+            android:textSize="22sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unlock the complete experience! \n Sign in to explore"
+            android:textColor="#A1A8B0"
+            android:textSize="18sp"
+            android:layout_marginTop="90dp"
+            android:layout_marginLeft="30dp"
+            android:gravity="center" />
+
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="180dp"
+            android:layout_marginLeft="80dp"
+            android:text="Login" />
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="235dp"
+            android:layout_marginLeft="80dp"
+            android:text="Sign up" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
