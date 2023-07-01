@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_tab"
+        android:icon="@drawable/home_icon"
+        android:title="Home" />
+    <item
+        android:id="@+id/camera_tab"
+        android:icon="@drawable/home_icon"
+        android:title="Camera" />
+    <item
+        android:id="@+id/learn_tab"
+        android:icon="@drawable/home_icon"
+        android:title="Learn" />
+    <item
+        android:id="@+id/chat_tab"
+        android:icon="@drawable/home_icon"
+        android:title="Chat" />
+</menu>

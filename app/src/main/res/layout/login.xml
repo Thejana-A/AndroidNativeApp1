@@ -47,14 +47,14 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="322dp"
-        android:layout_height="522dp"
+        android:layout_height="540dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498">
+        app:layout_constraintVertical_bias="0.510">
         <EditText
             android:id="@+id/editText1"
             android:layout_width="match_parent"
@@ -110,6 +110,47 @@
             android:text="Sign up"
             android:textColor="#147B72"
             android:textSize="16sp" />
+        <View
+            android:layout_width="140dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="300dp"
+            android:layout_marginBottom="16dp"
+            android:background="#717784" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="290dp"
+            android:gravity="center"
+            android:text=" OR "
+            android:textColor="#717784"
+            android:textSize="16sp" />
+        <View
+            android:layout_width="140dp"
+            android:layout_marginLeft="180dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="300dp"
+            android:layout_marginBottom="16dp"
+            android:background="#717784" />
+        <Button
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="340dp"
+            android:text="Sign in with Google" />
+        <Button
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="410dp"
+            android:text="Sign in with Apple" />
+        <Button
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="480dp"
+            android:text="Sign in with Facebook" />
+
 
 
     </androidx.cardview.widget.CardView>
