@@ -28,7 +28,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.home)
+        setContentView(R.layout.list_of_lessons)
+
+        //Showing full translation in dialog didn't work due to left drawer menu
+        /*val myTextView: TextView = findViewById(R.id.myTextView)
+        myTextView.setOnClickListener {
+            val dialog = Dialog(this)
+            dialog.setContentView(R.layout.view_translation_layout)
+            dialog.show()
+        } */
+
 
         drawerLayout = findViewById(R.id.drawerLayout)
         toolbar = findViewById(R.id.toolbar)
@@ -98,7 +107,6 @@ class MainActivity : AppCompatActivity() {
     private fun resetForgotPasswordButtonFunc() {
         lateinit var resetForgotPasswordButton: Button
         resetForgotPasswordButton = findViewById(R.id.resetForgotPasswordButton)
-
         resetForgotPasswordButton.setOnClickListener {
             resetPasswordFinishDialog()
         }
@@ -127,6 +135,17 @@ class MainActivity : AppCompatActivity() {
             setContentView(R.layout.login)
         }
 
+        dialog.show()
+    }
+
+    private fun viewSavedTranslationDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.view_translation_layout)
+
+        val closeSavedTranslationButton = dialog.findViewById<TextView>(R.id.closeSavedTranslationButton)
+        closeSavedTranslationButton.setOnClickListener {
+            dialog.dismiss()
+        }
         dialog.show()
     }
 

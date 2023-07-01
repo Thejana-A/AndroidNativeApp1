@@ -49,6 +49,7 @@
             android:gravity="center" />
 
         <Button
+            android:id="@+id/startSessionButton"
             android:layout_width="140dp"
             android:layout_height="50dp"
             android:layout_marginTop="70dp"
@@ -74,7 +75,7 @@
             android:id="@+id/textView2"
             android:layout_width="284dp"
             android:layout_height="80dp"
-            android:text="Saved translations"
+            android:text="Saved conversations"
             android:textSize="15sp"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
