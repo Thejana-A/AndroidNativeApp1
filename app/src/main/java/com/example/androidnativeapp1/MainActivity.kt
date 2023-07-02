@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.CheckBox
 import android.app.Dialog
+import android.view.Gravity
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -28,7 +29,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.list_of_lessons)
+        setContentView(R.layout.signup_finish)
+
+        /*val myTextView: TextView = findViewById(R.id.signupFinishButton)
+        myTextView.setOnClickListener {
+            showChatOptionsDialog()
+        }  */
 
         //Showing full translation in dialog didn't work due to left drawer menu
         /*val myTextView: TextView = findViewById(R.id.myTextView)
@@ -39,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         } */
 
 
-        drawerLayout = findViewById(R.id.drawerLayout)
+        /*drawerLayout = findViewById(R.id.drawerLayout)
         toolbar = findViewById(R.id.toolbar)
         navigationView = findViewById(R.id.navigationView)
 
@@ -84,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
-        }
+        } */
 
     }
 
@@ -99,7 +105,6 @@ class MainActivity : AppCompatActivity() {
     private fun signupFinishButtonFunc() {
         lateinit var signupFinishButton: Button
         signupFinishButton = findViewById(R.id.signupFinishButton)
-
         signupFinishButton.setOnClickListener {
             signupFinishDialog()
         }
@@ -122,6 +127,68 @@ class MainActivity : AppCompatActivity() {
             setContentView(R.layout.login)
         }
 
+        dialog.show()
+    }
+
+    private fun quizCompletedDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.quiz_completed_layout)
+
+        val quizCompletedHomeButton = dialog.findViewById<Button>(R.id.quizCompletedHomeButton)
+        quizCompletedHomeButton.setOnClickListener {
+            dialog.dismiss()
+            setContentView(R.layout.home)
+        }
+        dialog.show()
+    }
+
+    private fun cancelQuizDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.cancel_quiz_layout)
+
+        val continueQuizButton = dialog.findViewById<Button>(R.id.continueQuizButton)
+        continueQuizButton.setOnClickListener {
+            dialog.dismiss()
+            setContentView(R.layout.ongoing_quiz)
+        }
+
+        val cancelQuizButton = dialog.findViewById<Button>(R.id.cancelQuizButton)
+        cancelQuizButton.setOnClickListener {
+            dialog.dismiss()
+            setContentView(R.layout.list_of_quizzes)
+        }
+        dialog.show()
+    }
+
+    private fun showChatOptionsDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.chat_options_layout)
+
+        val window = dialog.window
+        val layoutParams = window?.attributes
+        layoutParams?.apply {
+            gravity = Gravity.TOP or Gravity.END
+        }
+
+        window?.attributes = layoutParams
+        dialog.show()
+    }
+
+    private fun inviteFriendDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.invite_friend_layout)
+
+        val inviteButton = dialog.findViewById<Button>(R.id.inviteButton)
+        inviteButton.setOnClickListener {
+            dialog.dismiss()
+            setContentView(R.layout.contact_list)
+        }
+
+        val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+            setContentView(R.layout.contact_list)
+        }
         dialog.show()
     }
 

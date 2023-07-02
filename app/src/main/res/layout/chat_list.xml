@@ -18,40 +18,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center">
-                <Button
-                    android:layout_width="160dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="0dp"
-                    android:text="Lessons" />
-                <Button
-                    android:layout_width="160dp"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="0dp"
-                    android:text="Quizzes" />
+                <EditText
+                    android:id="@+id/editText1"
+                    android:layout_width="300dp"
+                    android:layout_height="45dp"
+                    android:hint="     Search Chat"
+                    android:background="@drawable/edittext_rounded_bg"
+                    android:focusable="true"
+                    android:inputType="text" />
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="5dp"
+                    app:srcCompat="@drawable/contact_list" />
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/editText1"
-                android:layout_width="340dp"
-                android:layout_height="50dp"
-                android:hint="     Search lesson"
-                android:background="@drawable/edittext_rounded_bg"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
                 android:layout_marginTop="10dp"
-                android:inputType="text" />
-
-
+                android:layout_marginBottom="10dp"
+                android:textColor="#147B72"
+                android:textStyle="bold"
+                android:text="Chats" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="321dp"
@@ -59,7 +62,7 @@
                 app:cardBackgroundColor="#E8F3F1"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="0dp"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -68,7 +71,7 @@
                     android:layout_marginBottom="10dp"
                     android:orientation="vertical">
                     <androidx.cardview.widget.CardView
-                        android:layout_width="280dp"
+                        android:layout_width="295dp"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="#FFFFFF"
                         app:cardCornerRadius="8dp"
@@ -78,28 +81,31 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginLeft="20dp">
+                        android:layout_marginLeft="15dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                app:srcCompat="@drawable/logo_splash_4"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                app:srcCompat="@drawable/profile_picture"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"/>
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="150dp"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Sign Language Introduction"
+                                    android:text="Lara Muller"
                                     android:textSize="15sp"
                                     android:layout_marginTop="15dp"
                                     android:layout_marginLeft="5dp"
@@ -112,17 +118,24 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginBottom="10dp"
-                                    android:text="Completed 0 out of 12"
+                                    android:text="0777 123 567"
                                     android:textColor="#000000"
                                     android:textSize="12sp" />
                             </LinearLayout>
+                            <Button
+                                android:layout_width="60dp"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="0dp"
+                                android:layout_marginTop="10dp"
+                                android:textSize="10dp"
+                                android:text="2" />
                         </LinearLayout>
 
 
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="280dp"
+                        android:layout_width="295dp"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="#FFFFFF"
                         app:cardCornerRadius="8dp"
@@ -132,28 +145,31 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginLeft="20dp">
+                        android:layout_marginLeft="15dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                app:srcCompat="@drawable/logo_splash_4"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                app:srcCompat="@drawable/profile_picture"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintBottom_toBottomOf="parent"/>
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="150dp"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Days of week"
+                                    android:text="Jenny Lopez"
                                     android:textSize="15sp"
                                     android:layout_marginTop="15dp"
                                     android:layout_marginLeft="5dp"
@@ -161,15 +177,79 @@
                                     android:textColor="#147B72" />
 
                                 <TextView
-                                    android:id="@+id/textView2t"
+                                    android:id="@+id/textView3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
                                     android:layout_marginBottom="10dp"
-                                    android:text="Completed 0 out of 7"
+                                    android:text="0777 123 567"
                                     android:textColor="#000000"
                                     android:textSize="12sp" />
                             </LinearLayout>
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="295dp"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="3dp"
+                        android:layout_marginBottom="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginLeft="15dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                app:srcCompat="@drawable/profile_picture"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"/>
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Harry Potter"
+                                    android:textSize="15sp"
+                                    android:layout_marginTop="15dp"
+                                    android:layout_marginLeft="5dp"
+                                    android:textStyle="bold"
+                                    android:textColor="#147B72" />
+
+                                <TextView
+                                    android:id="@+id/textView4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:text="0777 123 567"
+                                    android:textColor="#000000"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                            <Button
+                                android:layout_width="60dp"
+                                android:layout_height="40dp"
+                                android:layout_marginLeft="0dp"
+                                android:layout_marginTop="10dp"
+                                android:textSize="10dp"
+                                android:text="1" />
                         </LinearLayout>
 
 
