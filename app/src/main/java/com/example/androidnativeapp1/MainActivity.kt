@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.signup_finish)
+        setContentView(R.layout.edit_profile)
 
         /*val myTextView: TextView = findViewById(R.id.signupFinishButton)
         myTextView.setOnClickListener {
