@@ -36,70 +36,78 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:text="Sign up" />
-
         </LinearLayout>
-
     </androidx.appcompat.widget.Toolbar>
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="322dp"
-        android:layout_height="540dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.230">
-
-        <TextView
-            android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="150dp"
-            android:layout_marginLeft="40dp"
-            android:text="Choose your subscription type" />
-        <Button
-            android:layout_width="230dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="190dp"
-            android:text="Go Premium" />
-        <Button
-            android:layout_width="230dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="270dp"
-            android:text="Start for free" />
+            android:gravity="center"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="322dp"
+                android:layout_height="540dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.230">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginLeft="40dp"
+                    android:text="Choose your subscription type" />
+                <Button
+                    android:layout_width="230dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="190dp"
+                    android:text="Go Premium" />
+                <Button
+                    android:layout_width="230dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="270dp"
+                    android:text="Start for free" />
 
 
 
-        <CheckBox
-            android:id="@+id/myCheckbox"
-            android:layout_marginTop="380dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#717784"
-            android:text="I agree to Be My Voice Terms of Service and Privacy Policy" />
+                <CheckBox
+                    android:id="@+id/myCheckbox"
+                    android:layout_marginTop="380dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#717784"
+                    android:text="I agree to Be My Voice Terms of Service and Privacy Policy" />
 
 
-        <Button
-            android:id="@+id/signupFinishButton"
-            android:layout_width="320dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="480dp"
-            android:onClick="signupFinishButtonFunc"
-            android:text="Finish" />
+                <Button
+                    android:id="@+id/signupFinishButton"
+                    android:layout_width="320dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="480dp"
+                    android:onClick="signupFinishButtonFunc"
+                    android:text="Finish" />
 
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 
-
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

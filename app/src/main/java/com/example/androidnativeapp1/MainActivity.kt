@@ -29,12 +29,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.edit_profile)
+        setContentView(R.layout.signup_finish)
 
-        /*val myTextView: TextView = findViewById(R.id.signupFinishButton)
-        myTextView.setOnClickListener {
-            showChatOptionsDialog()
-        }  */
+        val signupFinishButton: Button = findViewById(R.id.signupFinishButton)
+        signupFinishButton.setOnClickListener {
+            displayLeftDrawer()
+        }
 
         //Showing full translation in dialog didn't work due to left drawer menu
         /*val myTextView: TextView = findViewById(R.id.myTextView)
@@ -128,6 +128,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         dialog.show()
+    }
+
+    private fun displayLeftDrawer() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.left_drawer_layout)
+
+        val window = dialog.window
+        val layoutParams = window?.attributes
+        layoutParams?.apply {
+            gravity = Gravity.TOP or Gravity.START
+        }
+        window?.attributes = layoutParams
+        dialog.show()
+
+        val closeLeftDrawerButton = dialog.findViewById<TextView>(R.id.closeLeftDrawerButton)
+        closeLeftDrawerButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
     }
 
     private fun quizCompletedDialog() {
