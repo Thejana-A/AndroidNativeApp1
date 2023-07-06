@@ -68,14 +68,18 @@
                     android:id="@+id/editText1"
                     android:layout_width="320dp"
                     android:layout_height="50dp"
-                    android:hint="     Enter your name"
+                    android:hint="   Enter your name"
+                    android:drawableLeft="@drawable/name_icon"
+                    android:paddingLeft="20dp"
                     android:background="@drawable/edittext_rounded_bg"
                     android:inputType="text" />
                 <EditText
                     android:id="@+id/editText5"
                     android:layout_width="320dp"
                     android:layout_height="50dp"
-                    android:hint="     Enter your contact number"
+                    android:hint="   Enter your contact number"
+                    android:drawableLeft="@drawable/contact_icon"
+                    android:paddingLeft="20dp"
                     android:background="@drawable/edittext_rounded_bg"
                     android:layout_marginTop="65dp"
                     android:inputType="text" />
@@ -83,14 +87,21 @@
                     android:id="@+id/datePickerButton"
                     android:layout_width="320dp"
                     android:layout_height="60dp"
+                    android:textColor="#AAAAAA"
                     android:text="Enter your Date of Birth"
+                    android:drawableLeft="@drawable/calendar_icon"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="110dp"
+                    android:backgroundTint="#EFEFEF"
                     android:layout_marginTop="125dp"
                     android:onClick="showDatePicker" />
                 <EditText
                     android:id="@+id/editText3"
                     android:layout_width="320dp"
                     android:layout_height="50dp"
-                    android:hint="     Enter your email"
+                    android:hint="   Enter your email"
+                    android:drawableLeft="@drawable/email_icon"
+                    android:paddingLeft="20dp"
                     android:background="@drawable/edittext_rounded_bg"
                     android:layout_marginTop="195dp"
                     android:inputType="text" />
@@ -98,7 +109,9 @@
                     android:id="@+id/editText4"
                     android:layout_width="320dp"
                     android:layout_height="50dp"
-                    android:hint="     Enter your password"
+                    android:hint="   Enter your password"
+                    android:drawableLeft="@drawable/password_icon"
+                    android:paddingLeft="20dp"
                     android:background="@drawable/edittext_rounded_bg"
                     android:layout_marginTop="260dp"
                     android:inputType="textPassword" />
@@ -106,7 +119,9 @@
                     android:id="@+id/editText2"
                     android:layout_width="320dp"
                     android:layout_height="50dp"
-                    android:hint="     Enter confirm password"
+                    android:hint="   Enter confirm password"
+                    android:drawableLeft="@drawable/password_icon"
+                    android:paddingLeft="20dp"
                     android:background="@drawable/edittext_rounded_bg"
                     android:layout_marginTop="325dp"
                     android:inputType="textPassword" />
@@ -116,6 +131,7 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="450dp"
+                    android:backgroundTint="@color/dark_green"
                     android:text="Continue" />
 
             </androidx.cardview.widget.CardView>

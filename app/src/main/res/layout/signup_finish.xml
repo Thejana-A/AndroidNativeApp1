@@ -76,12 +76,16 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="190dp"
+                    android:textColor="#147B72"
+                    android:backgroundTint="#F4C985"
                     android:text="Go Premium" />
                 <Button
                     android:layout_width="230dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="270dp"
+                    android:textColor="#147B72"
+                    android:backgroundTint="#DFDFDF"
                     android:text="Start for free" />
 
 
@@ -102,6 +106,7 @@
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="480dp"
                     android:onClick="signupFinishButtonFunc"
+                    android:backgroundTint="@color/dark_green"
                     android:text="Finish" />
 
             </androidx.cardview.widget.CardView>

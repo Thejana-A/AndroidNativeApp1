@@ -29,12 +29,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.signup_finish)
+        setContentView(R.layout.home)
 
-        val signupFinishButton: Button = findViewById(R.id.signupFinishButton)
+        /*val signupFinishButton: Button = findViewById(R.id.signupFinishButton)
         signupFinishButton.setOnClickListener {
-            displayLeftDrawer()
-        }
+            signupFinishButtonFunc()
+        } */
+
+        /*val signupFinishButton: Button = findViewById(R.id.createNewPasswordButton)
+        signupFinishButton.setOnClickListener {
+            createNewPasswordButtonFunc()
+        } */
 
         //Showing full translation in dialog didn't work due to left drawer menu
         /*val myTextView: TextView = findViewById(R.id.myTextView)
@@ -45,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         } */
 
 
-        /*drawerLayout = findViewById(R.id.drawerLayout)
+        drawerLayout = findViewById(R.id.drawerLayout)
         toolbar = findViewById(R.id.toolbar)
         navigationView = findViewById(R.id.navigationView)
 
@@ -90,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
-        } */
+        }
 
     }
 
@@ -109,9 +114,9 @@ class MainActivity : AppCompatActivity() {
             signupFinishDialog()
         }
     }
-    private fun resetForgotPasswordButtonFunc() {
+    private fun createNewPasswordButtonFunc() {
         lateinit var resetForgotPasswordButton: Button
-        resetForgotPasswordButton = findViewById(R.id.resetForgotPasswordButton)
+        resetForgotPasswordButton = findViewById(R.id.createNewPasswordButton)
         resetForgotPasswordButton.setOnClickListener {
             resetPasswordFinishDialog()
         }
