@@ -54,6 +54,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
+
             <androidx.cardview.widget.CardView
                 android:layout_width="320dp"
                 android:layout_height="540dp"

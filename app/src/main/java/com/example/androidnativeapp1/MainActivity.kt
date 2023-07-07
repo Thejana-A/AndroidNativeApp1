@@ -16,6 +16,10 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.navigation.NavigationView
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.*
 
@@ -26,14 +30,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var toolbar: Toolbar
     private lateinit var navigationView: NavigationView
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
 
+
         /*val signupFinishButton: Button = findViewById(R.id.signupFinishButton)
         signupFinishButton.setOnClickListener {
-            signupFinishButtonFunc()
+            //signupFinishButtonFunc()
+            displayLeftDrawer()
         } */
 
         /*val signupFinishButton: Button = findViewById(R.id.createNewPasswordButton)
@@ -78,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        /*val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home_tab -> {
@@ -95,9 +102,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
-        }
+        } */
 
     }
+
 
     override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {

@@ -11,183 +11,159 @@
     tools:visibility="visible">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.110"
-        android:text="Welcome back Anirudh!" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="321dp"
-        android:layout_height="135dp"
-        app:cardBackgroundColor="#E8F3F1"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.180">
-
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="284dp"
-            android:layout_height="80dp"
-            android:text="Want to communicate in sign language?"
-            android:textSize="15sp"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="15dp"
-            android:textStyle="bold"
-            android:textColor="#147B72"
-            android:gravity="center" />
-
-        <Button
-            android:id="@+id/startSessionButton"
-            android:layout_width="140dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="150dp"
-            android:text="Start session" />
-
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="321dp"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="#E8F3F1"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.470">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="284dp"
-            android:layout_height="80dp"
-            android:text="Saved conversations"
-            android:textSize="15sp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="20dp"
-            android:textStyle="bold"
-            android:textColor="#147B72" />
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="284dp"
-            android:layout_height="80dp"
-            android:text="30.05.2023"
-            android:textSize="12sp"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="#147B72" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="280dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="3dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="20dp">
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Welcome back Anirudh!" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="321dp"
+                android:layout_height="135dp"
+                app:cardBackgroundColor="#E8F3F1"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                android:layout_marginTop="10dp">
+
                 <TextView
-                    android:id="@+id/textView1t"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Good morning! I'm from Colombo. Nice to meet you."
+                    android:id="@+id/textView1"
+                    android:layout_width="284dp"
+                    android:layout_height="80dp"
+                    android:text="Want to communicate in sign language?"
+                    android:textSize="15sp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginLeft="15dp"
+                    android:textStyle="bold"
+                    android:textColor="#147B72"
+                    android:gravity="center" />
+
+                <Button
+                    android:id="@+id/startSessionButton"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginLeft="150dp"
+                    android:text="Start session" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="321dp"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#E8F3F1"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="284dp"
+                    android:layout_height="80dp"
+                    android:text="Saved conversations"
                     android:textSize="15sp"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="20dp"
-                    android:textColor="#000000" />
+                    android:textStyle="bold"
+                    android:textColor="#147B72" />
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="284dp"
+                    android:layout_height="80dp"
+                    android:text="30.05.2023"
+                    android:textSize="12sp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#147B72" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="3dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginLeft="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/textView1t"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Good morning! I'm from Colombo. Nice to meet you."
+                            android:textSize="15sp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="#000000" />
+
+                        <TextView
+                            android:id="@+id/textView2t"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="200dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="06.30AM"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="150dp"
+                    android:text="View more" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="321dp"
+                android:layout_height="135dp"
+                app:cardBackgroundColor="#E8F3F1"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="0dp"
+                android:layout_marginTop="10dp">
+
 
                 <TextView
-                    android:id="@+id/textView2t"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="200dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="06.30AM"
+                    android:layout_width="284dp"
+                    android:layout_height="80dp"
+                    android:text="Learning Progress"
+                    android:textSize="15sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
                     android:textStyle="bold"
-                    android:textColor="#000000"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <Button
-            android:layout_width="140dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="150dp"
-            android:text="View more" />
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="321dp"
-        android:layout_height="135dp"
-        app:cardBackgroundColor="#E8F3F1"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.770">
+                    android:textColor="#147B72" />
 
 
-        <TextView
-            android:layout_width="284dp"
-            android:layout_height="80dp"
-            android:text="Learning Progress"
-            android:textSize="15sp"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="20dp"
-            android:textStyle="bold"
-            android:textColor="#147B72" />
+                <Button
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginLeft="150dp"
+                    android:text="Start session" />
 
-
-        <Button
-            android:layout_width="140dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="150dp"
-            android:text="Start session" />
-
-    </androidx.cardview.widget.CardView>
-
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:background="#147B72"
-        app:menu="@drawable/bottom_navigation_menu" />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
@@ -195,12 +171,12 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="60dp"
             android:orientation="vertical">
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="60dp"
                 android:background="@color/white"
                 android:elevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -211,7 +187,7 @@
                 app:titleTextAppearance="@style/AppBarTitleStyle">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="350dp"
                     android:layout_height="match_parent"
                     android:gravity="end">
                     <ImageView
@@ -230,6 +206,20 @@
             android:layout_gravity="start"
             app:menu="@drawable/drawer_menu" />
     </androidx.drawerlayout.widget.DrawerLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:background="#147B72"
+        app:menu="@drawable/bottom_navigation_menu" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
