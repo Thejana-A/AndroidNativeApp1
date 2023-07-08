@@ -152,7 +152,9 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="340dp"
-                    android:backgroundTint="#DEDEDE"
+                    android:backgroundTint="#FFFFFF"
+                    app:strokeColor="#E5E7EB"
+                    app:strokeWidth="1dp"
                     android:textColor="#000000"
                     android:drawableLeft="@drawable/google_icon"
                     android:text="Sign in with Google" />
@@ -161,7 +163,9 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="410dp"
-                    android:backgroundTint="#DEDEDE"
+                    android:backgroundTint="#FFFFFF"
+                    app:strokeColor="#E5E7EB"
+                    app:strokeWidth="1dp"
                     android:textColor="#000000"
                     android:drawableLeft="@drawable/apple_icon"
                     android:text="Sign in with Apple" />
@@ -170,7 +174,9 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="480dp"
-                    android:backgroundTint="#DEDEDE"
+                    android:backgroundTint="#FFFFFF"
+                    app:strokeColor="#E5E7EB"
+                    app:strokeWidth="1dp"
                     android:textColor="#000000"
                     android:drawableLeft="@drawable/facebook_icon"
                     android:text="Sign in with Facebook" />

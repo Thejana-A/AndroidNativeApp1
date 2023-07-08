@@ -72,10 +72,12 @@
                 <Button
                     android:layout_width="220dp"
                     android:layout_height="55dp"
-                    android:layout_marginTop="235dp"
+                    android:layout_marginTop="240dp"
                     android:layout_marginLeft="50dp"
-                    android:textColor="@color/white"
-                    android:backgroundTint="@color/dark_green"
+                    android:textColor="@color/dark_green"
+                    app:strokeColor="#147B72"
+                    app:strokeWidth="2dp"
+                    android:backgroundTint="@color/white"
                     android:text="Sign up" />
 
             </androidx.cardview.widget.CardView>

@@ -10,68 +10,74 @@
     tools:context=".MainActivity"
     tools:visibility="visible">
 
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="322dp"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.230">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/closeSavedTranslationButton"
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="322dp"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="270dp"
-                android:textColor="#555555"
-                android:text="x" />
-            <TextView
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="40dp"
-                android:text="Good morning! I'm from Colombo. I think that you are from Colombo as well." />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="40dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="40dp"
-                    android:textColor="#147B72"
-                    android:text="29.05.2023 (Monday)" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#147B72"
-                    android:text="07.30PM" />
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.230">
 
-            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/closeSavedTranslationButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="270dp"
+                        android:textColor="#555555"
+                        android:text="x" />
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="40dp"
+                        android:text="Good morning! I'm from Colombo. I think that you are from Colombo as well. Good morning! I'm from Colombo. I think that you are from Colombo as well. Good morning! I'm from Colombo. I think that you are from Colombo as well. Good morning! I'm from Colombo. I think that you are from Colombo as well." />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="40dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="40dp"
+                            android:textColor="#147B72"
+                            android:text="29.05.2023 (Monday)" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#147B72"
+                            android:text="07.30PM" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
-
-
-
-
-    </androidx.cardview.widget.CardView>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

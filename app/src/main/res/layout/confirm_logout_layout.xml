@@ -37,28 +37,26 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="80sp"
-                        android:textStyle="bold"
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="60dp"
                         android:layout_marginTop="80dp"
-                        android:textColor="#147B72"
-                        android:text="\u2639" />
+                        app:srcCompat="@drawable/logout_icon" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:layout_marginTop="20dp"
-                        android:text="Do you wish to quit?" />
+                        android:gravity="center"
+                        android:text="Are you sure to log out of\n your account?" />
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:gravity="center"
-                        android:text="Your progress will not be taken into consideration if you wish to quit"
+                        android:text="The app's data will no longer\n remain in your device."
                         android:textColor="#717784"
                         android:textSize="16sp" />
 
@@ -66,26 +64,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="50dp"
                         android:gravity="center">
                         <Button
-                            android:id="@+id/continueQuizButton"
-                            android:layout_width="130dp"
+                            android:id="@+id/confirmLogoutButton"
+                            android:layout_width="150dp"
                             android:layout_height="50dp"
                             android:backgroundTint="#147B72"
-                            android:text="Back to quiz" />
+                            android:text="Logout" />
                         <Button
-                            android:id="@+id/cancelQuizButton"
-                            android:layout_width="130dp"
+                            android:id="@+id/cancelLogoutButton"
+                            android:layout_width="150dp"
                             android:layout_height="50dp"
                             android:backgroundTint="#E8F3F1"
                             android:textColor="#147B72"
                             app:strokeColor="#147B72"
                             app:strokeWidth="1.5dp"
                             android:layout_marginLeft="10dp"
-                            android:text="Cancel quiz" />
+                            android:text="Cancel" />
                     </LinearLayout>
                 </LinearLayout>
+
 
             </androidx.cardview.widget.CardView>
         </LinearLayout>

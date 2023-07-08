@@ -74,6 +74,8 @@
                 <Button
                     android:layout_width="230dp"
                     android:layout_height="60dp"
+                    app:cornerRadius="5dp"
+                    android:textSize="16dp"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="190dp"
                     android:textColor="#147B72"
@@ -82,10 +84,14 @@
                 <Button
                     android:layout_width="230dp"
                     android:layout_height="60dp"
+                    app:cornerRadius="5dp"
+                    android:textSize="16dp"
+                    app:strokeColor="#147B72"
+                    app:strokeWidth="1dp"
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="270dp"
                     android:textColor="#147B72"
-                    android:backgroundTint="#DFDFDF"
+                    android:backgroundTint="#FFFFFF"
                     android:text="Start for free" />
 
 

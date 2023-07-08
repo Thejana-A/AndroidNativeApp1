@@ -10,11 +10,13 @@ import android.widget.DatePicker
 import android.widget.CheckBox
 import android.app.Dialog
 import android.view.Gravity
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.widget.Toolbar
+import androidx.cardview.widget.CardView
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.findNavController
@@ -34,13 +36,26 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.home)
-
+        setContentView(R.layout.privacy_policy)
 
         /*val signupFinishButton: Button = findViewById(R.id.signupFinishButton)
         signupFinishButton.setOnClickListener {
-            //signupFinishButtonFunc()
+            confirmLogoutDialog()
+        } */
+
+        /*val translationCardView1: CardView = findViewById(R.id.cardView1)
+        translationCardView1.setOnClickListener {
+            viewSavedTranslationDialog()
+        } */
+
+        /*val signupFinishButton: ImageView = findViewById(R.id.leftDrawerIcon)
+        signupFinishButton.setOnClickListener {
             displayLeftDrawer()
+        } */
+
+        /*val signupFinishButton: Button = findViewById(R.id.signupFinishButton)
+        signupFinishButton.setOnClickListener {
+            signupFinishButtonFunc()
         } */
 
         /*val signupFinishButton: Button = findViewById(R.id.createNewPasswordButton)
@@ -48,16 +63,9 @@ class MainActivity : AppCompatActivity() {
             createNewPasswordButtonFunc()
         } */
 
-        //Showing full translation in dialog didn't work due to left drawer menu
-        /*val myTextView: TextView = findViewById(R.id.myTextView)
-        myTextView.setOnClickListener {
-            val dialog = Dialog(this)
-            dialog.setContentView(R.layout.view_translation_layout)
-            dialog.show()
-        } */
 
-
-        drawerLayout = findViewById(R.id.drawerLayout)
+        //Built in appbar with many issues
+        /*drawerLayout = findViewById(R.id.drawerLayout)
         toolbar = findViewById(R.id.toolbar)
         navigationView = findViewById(R.id.navigationView)
 
@@ -83,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
             drawerLayout.closeDrawer(GravityCompat.START)
             true
-        }
+        }  */
 
         /*val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
@@ -174,6 +182,18 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    private fun sessionCompletedDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.session_completed_layout)
+
+        val quizCompletedHomeButton = dialog.findViewById<Button>(R.id.sessionCompletedHomeButton)
+        quizCompletedHomeButton.setOnClickListener {
+            dialog.dismiss()
+            setContentView(R.layout.home)
+        }
+        dialog.show()
+    }
+
     private fun cancelQuizDialog() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.cancel_quiz_layout)
@@ -188,6 +208,42 @@ class MainActivity : AppCompatActivity() {
         cancelQuizButton.setOnClickListener {
             dialog.dismiss()
             setContentView(R.layout.list_of_quizzes)
+        }
+        dialog.show()
+    }
+
+    private fun cancelSessionDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.cancel_session_layout)
+
+        val continueQuizButton = dialog.findViewById<Button>(R.id.continueSessionButton)
+        continueQuizButton.setOnClickListener {
+            dialog.dismiss()
+            setContentView(R.layout.session_start_view)
+        }
+
+        val cancelQuizButton = dialog.findViewById<Button>(R.id.cancelSessionButton)
+        cancelQuizButton.setOnClickListener {
+            dialog.dismiss()
+            setContentView(R.layout.scan_qr_code)
+        }
+        dialog.show()
+    }
+
+    private fun confirmLogoutDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.confirm_logout_layout)
+
+        val continueQuizButton = dialog.findViewById<Button>(R.id.confirmLogoutButton)
+        continueQuizButton.setOnClickListener {
+            dialog.dismiss()
+            setContentView(R.layout.session_start_view)
+        }
+
+        val cancelQuizButton = dialog.findViewById<Button>(R.id.cancelLogoutButton)
+        cancelQuizButton.setOnClickListener {
+            dialog.dismiss()
+            setContentView(R.layout.scan_qr_code)
         }
         dialog.show()
     }

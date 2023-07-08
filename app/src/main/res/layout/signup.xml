@@ -89,11 +89,13 @@
                     android:layout_width="320dp"
                     android:layout_height="60dp"
                     android:textColor="#AAAAAA"
+                    app:strokeColor="#CCCCCC"
+                    app:strokeWidth="1dp"
                     android:text="Enter your Date of Birth"
                     android:drawableLeft="@drawable/calendar_icon"
                     android:paddingLeft="20dp"
                     android:paddingRight="110dp"
-                    android:backgroundTint="#EFEFEF"
+                    android:backgroundTint="#FFFFFF"
                     android:layout_marginTop="125dp"
                     android:onClick="showDatePicker" />
                 <EditText
@@ -132,7 +134,10 @@
                     android:layout_height="60dp"
                     android:layout_marginLeft="0dp"
                     android:layout_marginTop="450dp"
-                    android:backgroundTint="@color/dark_green"
+                    app:strokeColor="@color/dark_green"
+                    app:strokeWidth="2dp"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/dark_green"
                     android:text="Continue" />
 
             </androidx.cardview.widget.CardView>

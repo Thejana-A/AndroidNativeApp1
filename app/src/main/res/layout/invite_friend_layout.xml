@@ -9,69 +9,81 @@
     android:visibility="visible"
     tools:context=".MainActivity"
     tools:visibility="visible">
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="322dp"
-        android:layout_height="440dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardElevation="0dp"
-        app:cardCornerRadius="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ScrollView
+        android:layout_width="340dp"
+        android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.230">
-
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginLeft="125dp"
-            app:srcCompat="@drawable/invitation_logo" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="200dp"
-            android:layout_marginLeft="110dp"
-            android:text="Invite Friends" />
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="250dp"
-            android:gravity="center"
-            android:text="Let's invite friends to connect with us.\n Send an invitation and start communicating today"
-            android:textColor="#717784"
-            android:textSize="16sp" />
-
+        android:layout_marginTop="60dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="320dp"
-            android:gravity="center">
-            <Button
-                android:id="@+id/inviteButton"
-                android:layout_width="140dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="0dp"
-                android:text="Send an invite" />
-            <Button
-                android:id="@+id/cancelButton"
-                android:layout_width="140dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="0dp"
-                android:text="Cancel" />
+            android:gravity="center"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="322dp"
+                android:layout_height="440dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardElevation="0dp"
+                app:cardCornerRadius="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.230">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginLeft="125dp"
+                    app:srcCompat="@drawable/invitation_logo" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="200dp"
+                    android:layout_marginLeft="110dp"
+                    android:text="Invite Friends" />
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="250dp"
+                    android:gravity="center"
+                    android:text="Let's invite friends to connect with us.\n Send an invitation and start communicating today"
+                    android:textColor="#717784"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="320dp"
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/inviteButton"
+                        android:layout_width="140dp"
+                        android:layout_height="60dp"
+                        android:backgroundTint="#147B72"
+                        android:text="Send an invite" />
+                    <Button
+                        android:id="@+id/cancelButton"
+                        android:layout_width="140dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="10dp"
+                        android:backgroundTint="#E8F3F1"
+                        android:textColor="#147B72"
+                        app:strokeColor="#147B72"
+                        app:strokeWidth="1.5dp"
+                        android:text="Cancel" />
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
+    </ScrollView>
 
-
-
-    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

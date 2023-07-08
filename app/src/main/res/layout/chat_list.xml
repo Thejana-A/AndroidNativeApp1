@@ -28,14 +28,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center">
                 <EditText
                     android:id="@+id/editText1"
                     android:layout_width="300dp"
                     android:layout_height="45dp"
-                    android:hint="     Search Chat"
+                    android:hint="   Search Chat"
+                    android:drawableLeft="@drawable/search_icon"
+                    android:paddingLeft="20dp"
                     android:background="@drawable/edittext_rounded_bg"
                     android:focusable="true"
                     android:inputType="text" />
@@ -62,7 +64,8 @@
                 app:cardBackgroundColor="#E8F3F1"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="0dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="100dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -77,10 +80,6 @@
                         app:cardCornerRadius="8dp"
                         app:cardElevation="3dp"
                         android:layout_marginBottom="10dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginLeft="15dp">
 
                         <LinearLayout
@@ -93,11 +92,7 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
-                                app:srcCompat="@drawable/profile_picture"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
+                                app:srcCompat="@drawable/profile_picture" />
                             <LinearLayout
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"
@@ -128,6 +123,7 @@
                                 android:layout_marginLeft="0dp"
                                 android:layout_marginTop="10dp"
                                 android:textSize="10dp"
+                                android:backgroundTint="#4ADB1A"
                                 android:text="2" />
                         </LinearLayout>
 
@@ -141,10 +137,6 @@
                         app:cardCornerRadius="8dp"
                         app:cardElevation="3dp"
                         android:layout_marginBottom="10dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginLeft="15dp">
 
                         <LinearLayout
@@ -157,11 +149,7 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
-                                app:srcCompat="@drawable/profile_picture"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
+                                app:srcCompat="@drawable/profile_picture" />
                             <LinearLayout
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"
@@ -198,10 +186,6 @@
                         app:cardCornerRadius="8dp"
                         app:cardElevation="3dp"
                         android:layout_marginBottom="10dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         android:layout_marginLeft="15dp">
 
                         <LinearLayout
@@ -214,11 +198,7 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginRight="10dp"
-                                app:srcCompat="@drawable/profile_picture"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
+                                app:srcCompat="@drawable/profile_picture" />
                             <LinearLayout
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"
@@ -249,6 +229,7 @@
                                 android:layout_marginLeft="0dp"
                                 android:layout_marginTop="10dp"
                                 android:textSize="10dp"
+                                android:backgroundTint="#4ADB1A"
                                 android:text="1" />
                         </LinearLayout>
 
@@ -262,47 +243,37 @@
 
     </ScrollView>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerLayout"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:titleTextAppearance="@style/AppBarTitleStyle">
+        <ImageView
+            android:id="@+id/leftDrawerIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            app:srcCompat="@drawable/left_drawer_icon" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                android:elevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:titleTextAppearance="@style/AppBarTitleStyle">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="end">
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="230dp"
-                        android:layout_height="60dp"
-                        android:layout_marginRight="30dp"
-                        app:srcCompat="@drawable/appbar_logo" />
-                </LinearLayout>
-            </androidx.appcompat.widget.Toolbar>
+            android:gravity="end">
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="230dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="30dp"
+                app:srcCompat="@drawable/appbar_logo" />
         </LinearLayout>
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            app:menu="@drawable/drawer_menu" />
-    </androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

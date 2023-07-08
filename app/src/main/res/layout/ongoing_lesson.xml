@@ -31,18 +31,31 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:textStyle="bold"
                 android:textColor="#147B72"
                 android:layout_marginRight="140dp"
                 android:text="\u003C  Back" />
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="#147B72"
-                android:layout_marginTop="10dp"
-                android:text="Days of the week" />
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@drawable/lesson_1_icon" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#147B72"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Days of the week" />
+            </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="340dp"
@@ -50,6 +63,7 @@
                 app:cardBackgroundColor="#E8F3F1"
                 app:cardCornerRadius="8dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="100dp"
                 app:cardElevation="0dp">
 
                 <LinearLayout
@@ -107,6 +121,10 @@
                             android:layout_height="45dp"
                             android:layout_marginTop="0dp"
                             android:textSize="12dp"
+                            android:backgroundTint="#FFFFFF"
+                            android:textColor="#147B72"
+                            app:strokeColor="#147B72"
+                            app:strokeWidth="1.5dp"
                             android:text="\u2190  Previous" />
                         <Button
                             android:layout_width="120dp"
@@ -114,6 +132,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="0dp"
                             android:textSize="12dp"
+                            android:backgroundTint="#147B72"
                             android:text="Next  \u2192" />
                     </LinearLayout>
 
@@ -125,47 +144,37 @@
     </ScrollView>
 
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerLayout"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:titleTextAppearance="@style/AppBarTitleStyle">
+        <ImageView
+            android:id="@+id/leftDrawerIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            app:srcCompat="@drawable/left_drawer_icon" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                android:elevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:titleTextAppearance="@style/AppBarTitleStyle">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="end">
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="230dp"
-                        android:layout_height="60dp"
-                        android:layout_marginRight="30dp"
-                        app:srcCompat="@drawable/appbar_logo" />
-                </LinearLayout>
-            </androidx.appcompat.widget.Toolbar>
+            android:gravity="end">
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="230dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="30dp"
+                app:srcCompat="@drawable/appbar_logo" />
         </LinearLayout>
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            app:menu="@drawable/drawer_menu" />
-    </androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

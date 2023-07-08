@@ -23,22 +23,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.1"
+                android:layout_marginTop="20dp"
                 android:gravity="center">
                 <Button
                     android:layout_width="160dp"
                     android:layout_height="60dp"
-                    android:layout_marginTop="0dp"
+                    app:cornerRadius="5dp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#E8F3F1"
+                    android:textColor="#147B72"
+                    app:strokeColor="#147B72"
+                    app:strokeWidth="1dp"
                     android:text="Lessons" />
                 <Button
                     android:layout_width="160dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="0dp"
+                    android:backgroundTint="#147B72"
+                    app:cornerRadius="5dp"
+                    android:textStyle="bold"
                     android:text="Quizzes" />
             </LinearLayout>
 
@@ -46,7 +49,9 @@
                 android:id="@+id/editText1"
                 android:layout_width="340dp"
                 android:layout_height="50dp"
-                android:hint="     Search quiz"
+                android:hint="   Search quiz"
+                android:drawableLeft="@drawable/search_icon"
+                android:paddingLeft="20dp"
                 android:background="@drawable/edittext_rounded_bg"
                 android:layout_marginTop="10dp"
                 android:inputType="text" />
@@ -59,7 +64,8 @@
                 app:cardBackgroundColor="#E8F3F1"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="0dp"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="100dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -83,15 +89,14 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
                             android:orientation="horizontal">
                             <ImageView
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:layout_height="50dp"
-                                app:srcCompat="@drawable/logo_splash_4"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
+                                android:layout_marginTop="8dp"
+                                android:layout_marginLeft="10dp"
+                                app:srcCompat="@drawable/quiz_icon" />
                             <LinearLayout
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"
@@ -117,10 +122,11 @@
                                     android:textSize="12sp" />
                             </LinearLayout>
                             <Button
+                                android:backgroundTint="#656565"
                                 android:layout_width="88dp"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="0dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="15dp"
                                 android:textSize="8dp"
                                 android:text="Completed" />
                         </LinearLayout>
@@ -144,15 +150,14 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
                             android:orientation="horizontal">
                             <ImageView
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:layout_height="50dp"
-                                app:srcCompat="@drawable/logo_splash_4"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
+                                android:layout_marginTop="8dp"
+                                android:layout_marginLeft="10dp"
+                                app:srcCompat="@drawable/quiz_icon" />
                             <LinearLayout
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"
@@ -181,7 +186,8 @@
                                 android:layout_width="88dp"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="0dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="15dp"
+                                android:backgroundTint="#147B72"
                                 android:textSize="8dp"
                                 android:text="Start" />
                         </LinearLayout>
@@ -205,15 +211,14 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
                             android:orientation="horizontal">
                             <ImageView
-                                android:layout_width="50dp"
+                                android:layout_width="35dp"
                                 android:layout_height="50dp"
-                                app:srcCompat="@drawable/logo_splash_4"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
+                                android:layout_marginTop="8dp"
+                                android:layout_marginLeft="10dp"
+                                app:srcCompat="@drawable/quiz_icon" />
                             <LinearLayout
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"
@@ -242,7 +247,8 @@
                                 android:layout_width="88dp"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="0dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="15dp"
+                                android:backgroundTint="#147B72"
                                 android:textSize="8dp"
                                 android:text="Start" />
                         </LinearLayout>
@@ -257,47 +263,37 @@
 
     </ScrollView>
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawerLayout"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:titleTextAppearance="@style/AppBarTitleStyle">
+        <ImageView
+            android:id="@+id/leftDrawerIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            app:srcCompat="@drawable/left_drawer_icon" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                android:elevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:titleTextAppearance="@style/AppBarTitleStyle">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="end">
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="230dp"
-                        android:layout_height="60dp"
-                        android:layout_marginRight="30dp"
-                        app:srcCompat="@drawable/appbar_logo" />
-                </LinearLayout>
-            </androidx.appcompat.widget.Toolbar>
+            android:gravity="end">
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="230dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="30dp"
+                app:srcCompat="@drawable/appbar_logo" />
         </LinearLayout>
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            app:menu="@drawable/drawer_menu" />
-    </androidx.drawerlayout.widget.DrawerLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

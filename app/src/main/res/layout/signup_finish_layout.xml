@@ -31,15 +31,12 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.230">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="80sp"
-                    android:textStyle="bold"
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_marginTop="80dp"
-                    android:layout_marginLeft="145dp"
-                    android:textColor="#147B72"
-                    android:text="\u2713" />
+                    android:layout_marginLeft="125dp"
+                    app:srcCompat="@drawable/right_tick_icon" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
