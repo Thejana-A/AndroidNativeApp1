@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".MainActivity"
+    android:background="#E8F3F1"
+    tools:visibility="visible">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="136dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/inviteFriendButton"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
+                android:backgroundTint="#656565"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="15dp"
+                android:textSize="10dp"
+                android:text="september 30" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="285dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:text="Good morning! I'm from Colombo"
+                    android:textSize="15sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#000000" />
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="06.30AM"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="150dp"
+                android:textColor="#7A7A7A" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#147B72"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp">
+
+                <TextView
+                    android:id="@+id/textView4t"
+                    android:layout_width="285dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:text="Good morning! I'm from Colombo"
+                    android:textSize="15sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#FFFFFF" />
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/textView5t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="06.32AM"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="150dp"
+                android:textColor="#7A7A7A" />
+
+            <ImageView
+                android:layout_width="285dp"
+                android:layout_height="225dp"
+                app:srcCompat="@drawable/sign_lang_sample"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp" />
+            <TextView
+                android:id="@+id/textView5x"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="06.35AM"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="150dp"
+                android:textColor="#7A7A7A" />
+            <ImageView
+                android:layout_width="285dp"
+                android:layout_height="225dp"
+                app:srcCompat="@drawable/sign_lang_sample"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="50dp" />
+            <TextView
+                android:id="@+id/textView5y"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="06.35AM"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="150dp"
+                android:textColor="#7A7A7A" />
+            <androidx.cardview.widget.CardView
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp">
+
+                <TextView
+                    android:id="@+id/textView4u"
+                    android:layout_width="265dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:text="Good morning! I'm from Colombo. Good morning! I'm from Colombo. Good morning! I'm from Colombo. Good morning! I'm from Colombo"
+                    android:textSize="15sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#000000" />
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/textView5i"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="06.40AM"
+                android:textSize="12sp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="150dp"
+                android:textColor="#7A7A7A" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:titleTextAppearance="@style/AppBarTitleStyle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="start">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                app:srcCompat="@drawable/arrow_left" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/profile_picture"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <LinearLayout
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jenny Lopez"
+                    android:textSize="15sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:textStyle="bold"
+                    android:textColor="#147B72" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Last seen 5 minutes ago"
+                    android:textColor="#005FFF"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="end">
+                <TextView
+                    android:id="@+id/chatOptionsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\u22EE"
+                    android:textSize="20sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:gravity="center">
+            <!--<ImageView
+                android:id="@+id/recordVideoButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="15dp"
+                app:srcCompat="@drawable/camera_icon" /> -->
+            <EditText
+                android:id="@+id/messageField"
+                android:layout_width="360dp"
+                android:layout_height="45dp"
+                android:hint="   Message..."
+                android:drawableLeft="@drawable/camera_icon"
+                android:paddingLeft="10dp"
+                android:drawableRight="@drawable/send_message_icon"
+                android:paddingRight="10dp"
+                android:background="@drawable/edittext_rounded_bg"
+                android:focusable="true"
+                android:inputType="text" />
+            <!--<ImageView
+                android:id="@+id/sendMessageButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="10dp"
+                app:srcCompat="@drawable/send_message_icon" /> -->
+
+        </LinearLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:itemBackground="@color/dark_green"
+            android:background="@color/dark_green"
+            app:itemIconTint="@drawable/bottom_nav_color"
+            app:itemPaddingTop="12dp"
+            app:itemPaddingBottom="10dp"
+            app:menu="@drawable/bottom_navigation_menu" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

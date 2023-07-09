@@ -1,18 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home_tab"
-        android:icon="@drawable/home_icon"
-        android:title="Home" />
+        android:icon="@drawable/navbar_home_icon" />
     <item
         android:id="@+id/camera_tab"
-        android:icon="@drawable/home_icon"
-        android:title="Camera" />
+        android:icon="@drawable/navbar_camera_icon" />
     <item
         android:id="@+id/learn_tab"
-        android:icon="@drawable/home_icon"
-        android:title="Learn" />
+        android:icon="@drawable/navbar_learn_icon" />
     <item
         android:id="@+id/chat_tab"
-        android:icon="@drawable/home_icon"
-        android:title="Chat" />
+        android:icon="@drawable/navbar_chat_icon" />
 </menu>

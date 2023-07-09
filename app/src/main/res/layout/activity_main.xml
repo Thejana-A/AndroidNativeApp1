@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/logoImage"
         android:layout_width="188dp"
         android:layout_height="272dp"
         app:srcCompat="@drawable/logo_splash_4"

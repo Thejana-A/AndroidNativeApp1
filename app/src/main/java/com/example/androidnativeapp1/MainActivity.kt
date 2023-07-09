@@ -7,23 +7,17 @@ import android.app.DatePickerDialog
 import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
-import android.widget.CheckBox
 import android.app.Dialog
+import android.content.Intent
 import android.view.Gravity
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.widget.Toolbar
-import androidx.cardview.widget.CardView
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.*
+import android.os.Handler
+import android.widget.ImageView
+import com.example.androidnativeapp1.Onboarding1
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,11 +30,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.privacy_policy)
+        setContentView(R.layout.activity_main)
+
+        /*val logoImage: ImageView = findViewById(R.id.logoImage)
+        logoImage.setOnClickListener {
+            startActivity(Intent(this, Onboarding1::class.java))
+        } */
+        val handler = Handler()
+        val runnable = Runnable {
+            startActivity(Intent(this, Onboarding1::class.java))
+        }
+        val timeoutDuration = 3000L
+        handler.postDelayed(runnable, timeoutDuration)
+
 
         /*val signupFinishButton: Button = findViewById(R.id.signupFinishButton)
         signupFinishButton.setOnClickListener {
-            confirmLogoutDialog()
+            viewSavedTranslationDialog()
         } */
 
         /*val translationCardView1: CardView = findViewById(R.id.cardView1)
@@ -64,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         } */
 
 
-        //Built in appbar with many issues
+        //Built in left drawer with many issues
         /*drawerLayout = findViewById(R.id.drawerLayout)
         toolbar = findViewById(R.id.toolbar)
         navigationView = findViewById(R.id.navigationView)
@@ -97,31 +103,35 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home_tab -> {
+                    setContentView(R.layout.home)
                     true
                 }
                 R.id.camera_tab -> {
+                    setContentView(R.layout.scan_qr_code)
                     true
                 }
                 R.id.learn_tab -> {
+                    setContentView(R.layout.list_of_lessons)
                     true
                 }
                 R.id.chat_tab -> {
+                    setContentView(R.layout.chat_initial_page)
                     true
                 }
                 else -> false
             }
-        } */
-
+        }*/
     }
 
 
-    override fun onBackPressed() {
+    //Built in left drawer with many issues
+    /*override fun onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
         }
-    }
+    } */
 
     private fun signupFinishButtonFunc() {
         lateinit var signupFinishButton: Button
@@ -216,14 +226,14 @@ class MainActivity : AppCompatActivity() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.cancel_session_layout)
 
-        val continueQuizButton = dialog.findViewById<Button>(R.id.continueSessionButton)
-        continueQuizButton.setOnClickListener {
+        val continueSessionButton = dialog.findViewById<Button>(R.id.continueSessionButton)
+        continueSessionButton.setOnClickListener {
             dialog.dismiss()
             setContentView(R.layout.session_start_view)
         }
 
-        val cancelQuizButton = dialog.findViewById<Button>(R.id.cancelSessionButton)
-        cancelQuizButton.setOnClickListener {
+        val cancelSessionButton = dialog.findViewById<Button>(R.id.cancelSessionButton)
+        cancelSessionButton.setOnClickListener {
             dialog.dismiss()
             setContentView(R.layout.scan_qr_code)
         }
@@ -234,16 +244,15 @@ class MainActivity : AppCompatActivity() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.confirm_logout_layout)
 
-        val continueQuizButton = dialog.findViewById<Button>(R.id.confirmLogoutButton)
-        continueQuizButton.setOnClickListener {
+        val confirmLogoutButton = dialog.findViewById<Button>(R.id.confirmLogoutButton)
+        confirmLogoutButton.setOnClickListener {
             dialog.dismiss()
-            setContentView(R.layout.session_start_view)
+            setContentView(R.layout.login)
         }
 
-        val cancelQuizButton = dialog.findViewById<Button>(R.id.cancelLogoutButton)
-        cancelQuizButton.setOnClickListener {
+        val cancelLogoutButton = dialog.findViewById<Button>(R.id.cancelLogoutButton)
+        cancelLogoutButton.setOnClickListener {
             dialog.dismiss()
-            setContentView(R.layout.scan_qr_code)
         }
         dialog.show()
     }
