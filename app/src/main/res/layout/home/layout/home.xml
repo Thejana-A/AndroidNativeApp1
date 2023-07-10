@@ -48,7 +48,7 @@
                     android:gravity="center" />
 
                 <Button
-                    android:id="@+id/startSessionButton"
+                    android:id="@+id/startSession"
                     android:layout_width="140dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="70dp"
@@ -165,6 +165,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <Button
+                        android:id="@+id/savedTranslations"
                         android:layout_width="140dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="10dp"

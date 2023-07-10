@@ -20,6 +20,7 @@
             android:gravity="center"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/backToHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -66,7 +67,7 @@
                             android:textColor="#147B72" />
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/cardView1"
+                            android:id="@+id/viewTranslationLayout"
                             android:layout_width="280dp"
                             android:layout_height="wrap_content"
                             app:cardBackgroundColor="#FFFFFF"

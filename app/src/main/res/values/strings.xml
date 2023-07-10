@@ -48,9 +48,20 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="title_activity_create_new_password">CreateNewPassword</string>
+    <string name="title_activity_reset_password_layout">ResetPasswordLayout</string>
+    <string name="title_activity_reset_password_verify_code">ResetPasswordVerifyCode</string>
+    <string name="title_activity_reset_password_email">ResetPasswordEmail</string>
+    <string name="title_activity_left_drawer_layout">LeftDrawerLayout</string>
+    <string name="title_activity_view_translation_layout">ViewTranslationLayout</string>
+    <string name="title_activity_saved_translations">SavedTranslations</string>
+    <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="title_activity_home">Home</string>
     <string name="title_activity_onboarding2">Onboarding2</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_onboarding3">Onboarding3</string>
     <string name="title_activity_onboarding4">Onboarding4</string>
+    <string name="title_activity_signup_finish_layout">SignupFinishLayout</string>
+    <string name="title_activity_signup_finish">SignupFinish</string>
     <string name="title_activity_signup">Signup</string>
 </resources>

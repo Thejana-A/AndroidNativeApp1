@@ -17,7 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import java.util.*
 import android.os.Handler
 import android.widget.ImageView
-import com.example.androidnativeapp1.Onboarding1
+import com.example.androidnativeapp1.splash_screen.Onboarding1
 
 
 class MainActivity : AppCompatActivity() {
