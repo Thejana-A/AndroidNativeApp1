@@ -90,6 +90,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
+                android:id="@+id/generateNewQrCode"
                 android:layout_width="220dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"

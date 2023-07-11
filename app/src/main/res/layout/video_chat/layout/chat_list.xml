@@ -42,6 +42,7 @@
                     android:focusable="true"
                     android:inputType="text" />
                 <ImageView
+                    android:id="@+id/contactList"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginLeft="5dp"
@@ -74,6 +75,7 @@
                     android:layout_marginBottom="10dp"
                     android:orientation="vertical">
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/viewChatConversation"
                         android:layout_width="295dp"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="#FFFFFF"

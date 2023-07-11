@@ -48,6 +48,32 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="title_activity_edit_profile">EditProfile</string>
+    <string name="title_activity_frequently_asked_questions">FrequentlyAskedQuestions</string>
+    <string name="title_activity_notifications">Notifications</string>
+    <string name="title_activity_privacy_policy">PrivacyPolicy</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_security">Security</string>
+    <string name="title_activity_confirm_logout_layout">ConfirmLogoutLayout</string>
+    <string name="title_activity_cancel_session_layout">CancelSessionLayout</string>
+    <string name="title_activity_ongoing_session_view">OngoingSessionView</string>
+    <string name="title_activity_scan_qr_code">ScanQrCode</string>
+    <string name="title_activity_session_completed_layout">SessionCompletedLayout</string>
+    <string name="title_activity_session_start_countdown">SessionStartCountdown</string>
+    <string name="title_activity_session_start_view">SessionStartView</string>
+    <string name="title_activity_invite_friend_layout">InviteFriendLayout</string>
+    <string name="title_activity_contact_list">ContactList</string>
+    <string name="title_activity_chat_options_layout">ChatOptionsLayout</string>
+    <string name="title_activity_chat_list">ChatList</string>
+    <string name="title_activity_chat_initial_page">ChatInitialPage</string>
+    <string name="title_activity_chat">Chat</string>
+    <string name="title_activity_cancel_quiz_layout">CancelQuizLayout</string>
+    <string name="title_activity_quiz_completed_layout">QuizCompletedLayout</string>
+    <string name="title_activity_ongoing_quiz">OngoingQuiz</string>
+    <string name="title_activity_ongoing_lesson">OngoingLesson</string>
+    <string name="title_activity_list_of_quizzes">ListOfQuizzes</string>
+    <string name="title_activity_list_of_sub_lessons">ListOfSubLessons</string>
+    <string name="title_activity_list_of_lessons">ListOfLessons</string>
     <string name="title_activity_create_new_password">CreateNewPassword</string>
     <string name="title_activity_reset_password_layout">ResetPasswordLayout</string>
     <string name="title_activity_reset_password_verify_code">ResetPasswordVerifyCode</string>

@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="136dp">
+        android:layout_marginBottom="120dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -185,6 +185,7 @@
             android:orientation="horizontal"
             android:gravity="start">
             <ImageView
+                android:id="@+id/backButton"
                 android:layout_width="20dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="16dp"
@@ -226,11 +227,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/viewChatOptions"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="end">
                 <TextView
-                    android:id="@+id/chatOptionsButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="\u22EE"

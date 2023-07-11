@@ -184,7 +184,7 @@ class MainActivity : AppCompatActivity() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.quiz_completed_layout)
 
-        val quizCompletedHomeButton = dialog.findViewById<Button>(R.id.quizCompletedHomeButton)
+        val quizCompletedHomeButton = dialog.findViewById<Button>(R.id.backToHomeButton)
         quizCompletedHomeButton.setOnClickListener {
             dialog.dismiss()
             setContentView(R.layout.home)
@@ -196,8 +196,8 @@ class MainActivity : AppCompatActivity() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.session_completed_layout)
 
-        val quizCompletedHomeButton = dialog.findViewById<Button>(R.id.sessionCompletedHomeButton)
-        quizCompletedHomeButton.setOnClickListener {
+        val backToHome = dialog.findViewById<Button>(R.id.backToHome)
+        backToHome.setOnClickListener {
             dialog.dismiss()
             setContentView(R.layout.home)
         }
@@ -208,13 +208,13 @@ class MainActivity : AppCompatActivity() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.cancel_quiz_layout)
 
-        val continueQuizButton = dialog.findViewById<Button>(R.id.continueQuizButton)
+        val continueQuizButton = dialog.findViewById<Button>(R.id.backToQuiz)
         continueQuizButton.setOnClickListener {
             dialog.dismiss()
             setContentView(R.layout.ongoing_quiz)
         }
 
-        val cancelQuizButton = dialog.findViewById<Button>(R.id.cancelQuizButton)
+        val cancelQuizButton = dialog.findViewById<Button>(R.id.cancelQuiz)
         cancelQuizButton.setOnClickListener {
             dialog.dismiss()
             setContentView(R.layout.list_of_quizzes)

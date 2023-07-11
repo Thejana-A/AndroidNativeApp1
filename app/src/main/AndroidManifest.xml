@@ -13,6 +13,141 @@
         android:theme="@style/Theme.AndroidNativeApp1"
         tools:targetApi="31">
         <activity
+            android:name=".ConfirmLogoutLayout"
+            android:exported="false"
+            android:label="@string/title_activity_confirm_logout_layout"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".settings.FrequentlyAskedQuestions"
+            android:exported="false"
+            android:label="@string/title_activity_frequently_asked_questions"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".settings.Security"
+            android:exported="false"
+            android:label="@string/title_activity_security"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".settings.PrivacyPolicy"
+            android:exported="false"
+            android:label="@string/title_activity_privacy_policy"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".settings.Notifications"
+            android:exported="false"
+            android:label="@string/title_activity_notifications"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".settings.EditProfile"
+            android:exported="false"
+            android:label="@string/title_activity_edit_profile"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".settings.Profile"
+            android:exported="false"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".translator.SessionCompletedLayout"
+            android:exported="false"
+            android:label="@string/title_activity_session_completed_layout"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".translator.OngoingSessionView"
+            android:exported="false"
+            android:label="@string/title_activity_ongoing_session_view"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".translator.SessionStartCountdown"
+            android:exported="false"
+            android:label="@string/title_activity_session_start_countdown"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".translator.CancelSessionLayout"
+            android:exported="false"
+            android:label="@string/title_activity_cancel_session_layout"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".translator.SessionStartView"
+            android:exported="false"
+            android:label="@string/title_activity_session_start_view"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".translator.ScanQrCode"
+            android:exported="false"
+            android:label="@string/title_activity_scan_qr_code"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".video_chat.InviteFriendLayout"
+            android:exported="false"
+            android:label="@string/title_activity_invite_friend_layout"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".video_chat.Chat"
+            android:exported="false"
+            android:label="@string/title_activity_chat"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".video_chat.ChatOptionsLayout"
+            android:exported="false"
+            android:label="@string/title_activity_chat_options_layout"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".Chat"
+            android:exported="false"
+            android:label="@string/title_activity_chat"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".video_chat.ContactList"
+            android:exported="false"
+            android:label="@string/title_activity_contact_list"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".video_chat.ChatList"
+            android:exported="false"
+            android:label="@string/title_activity_chat_list"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".video_chat.ChatInitialPage"
+            android:exported="false"
+            android:label="@string/title_activity_chat_initial_page"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".learn.CancelQuizLayout"
+            android:exported="false"
+            android:label="@string/title_activity_cancel_quiz_layout"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".learn.QuizCompletedLayout"
+            android:exported="false"
+            android:label="@string/title_activity_quiz_completed_layout"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".learn.OngoingQuiz"
+            android:exported="false"
+            android:label="@string/title_activity_ongoing_quiz"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".learn.ListOfSubLessons"
+            android:exported="false"
+            android:label="@string/title_activity_list_of_sub_lessons"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".learn.OngoingLesson"
+            android:exported="false"
+            android:label="@string/title_activity_ongoing_lesson"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".learn.ListOfQuizzes"
+            android:exported="false"
+            android:label="@string/title_activity_list_of_quizzes"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".learn.ListOfLessons"
+            android:exported="false"
+            android:label="@string/title_activity_list_of_lessons"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
             android:name=".reset_password.ResetPasswordLayout"
             android:exported="false"
             android:label="@string/title_activity_reset_password_layout"

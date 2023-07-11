@@ -26,6 +26,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="center">
                 <Button
+                    android:id="@+id/lessonsButton"
                     android:layout_width="160dp"
                     android:layout_height="60dp"
                     app:cornerRadius="5dp"
@@ -122,13 +123,14 @@
                                     android:textSize="12sp" />
                             </LinearLayout>
                             <Button
-                                android:backgroundTint="#656565"
+                                android:id="@+id/linkToQuiz"
                                 android:layout_width="88dp"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="0dp"
                                 android:layout_marginTop="15dp"
+                                android:backgroundTint="#147B72"
                                 android:textSize="8dp"
-                                android:text="Completed" />
+                                android:text="Start" />
                         </LinearLayout>
 
 
@@ -183,13 +185,14 @@
                                     android:textSize="12sp" />
                             </LinearLayout>
                             <Button
+                                android:backgroundTint="#656565"
                                 android:layout_width="88dp"
                                 android:layout_height="40dp"
                                 android:layout_marginLeft="0dp"
                                 android:layout_marginTop="15dp"
-                                android:backgroundTint="#147B72"
                                 android:textSize="8dp"
-                                android:text="Start" />
+                                android:text="Completed" />
+
                         </LinearLayout>
 
 

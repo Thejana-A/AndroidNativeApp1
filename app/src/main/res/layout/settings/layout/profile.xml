@@ -28,6 +28,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -71,6 +72,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
                     <LinearLayout
+                        android:id="@+id/editProfile"
                         android:layout_width="340dp"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
@@ -123,6 +125,7 @@
                         android:layout_marginLeft="20dp"
                         android:background="#E8F3F1" />
                     <LinearLayout
+                        android:id="@+id/notifications"
                         android:layout_width="340dp"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
@@ -175,6 +178,7 @@
                         android:layout_marginLeft="20dp"
                         android:background="#E8F3F1" />
                     <LinearLayout
+                        android:id="@+id/paymentMethod"
                         android:layout_width="340dp"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
@@ -228,6 +232,7 @@
                         android:layout_marginLeft="20dp"
                         android:background="#E8F3F1" />
                     <LinearLayout
+                        android:id="@+id/security"
                         android:layout_width="340dp"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
@@ -281,6 +286,7 @@
                         android:layout_marginLeft="20dp"
                         android:background="#E8F3F1" />
                     <LinearLayout
+                        android:id="@+id/frequentlyAskedQuestions"
                         android:layout_width="340dp"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
@@ -334,6 +340,7 @@
                         android:layout_marginLeft="20dp"
                         android:background="#E8F3F1" />
                     <LinearLayout
+                        android:id="@+id/privacyPolicy"
                         android:layout_width="340dp"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"

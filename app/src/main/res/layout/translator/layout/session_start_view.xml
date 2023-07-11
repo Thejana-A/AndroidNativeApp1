@@ -42,6 +42,7 @@
                 android:textColor="#555555"
                 android:text="ABC-CDE-345" />
             <Button
+                android:id="@+id/leaveSession"
                 android:layout_width="250dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="100dp"

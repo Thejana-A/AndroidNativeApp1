@@ -36,6 +36,7 @@
                     android:focusable="true"
                     android:inputType="text" />
                 <ImageView
+                    android:id="@+id/contactList"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginLeft="5dp"
@@ -43,6 +44,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/chatList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"

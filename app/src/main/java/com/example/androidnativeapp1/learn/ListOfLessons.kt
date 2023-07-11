@@ -1,32 +1,33 @@
-package com.example.androidnativeapp1.home
+package com.example.androidnativeapp1.learn
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ImageView
+import androidx.cardview.widget.CardView
 import com.example.androidnativeapp1.LeftDrawerLayout
 import com.example.androidnativeapp1.R
-import com.example.androidnativeapp1.learn.ListOfLessons
+import com.example.androidnativeapp1.home.Home
 import com.example.androidnativeapp1.translator.ScanQrCode
 import com.example.androidnativeapp1.video_chat.ChatInitialPage
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-class Home : AppCompatActivity() {
+class ListOfLessons : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.home)
+        setContentView(R.layout.list_of_lessons)
 
-        val startSession: Button = findViewById(R.id.startSession)
-        startSession.setOnClickListener {
-            //startActivity(Intent(this, ScanQrCode::class.java))
+        val linkToListOfSubLessons: CardView = findViewById(R.id.linkToListOfSubLessons)
+        linkToListOfSubLessons.setOnClickListener {
+            startActivity(Intent(this, ListOfSubLessons::class.java))
         }
 
-        val savedTranslations: Button = findViewById(R.id.savedTranslations)
-        savedTranslations.setOnClickListener {
-            startActivity(Intent(this, SavedTranslations::class.java))
+        val quizButton: Button = findViewById(R.id.quizButton)
+        quizButton.setOnClickListener {
+            startActivity(Intent(this, ListOfQuizzes::class.java))
         }
 
         val leftDrawerIcon: ImageView = findViewById(R.id.leftDrawerIcon)
@@ -56,7 +57,7 @@ class Home : AppCompatActivity() {
                 else -> false
             }
         }
-        bottomNavigationView.getMenu().getItem(0).setChecked(true)
+        bottomNavigationView.getMenu().getItem(2).setChecked(true)
 
     }
 

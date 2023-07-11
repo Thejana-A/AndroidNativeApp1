@@ -11,6 +11,9 @@ import androidx.cardview.widget.CardView
 import com.example.androidnativeapp1.LeftDrawerLayout
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.databinding.ViewTranslationLayoutBinding
+import com.example.androidnativeapp1.learn.ListOfLessons
+import com.example.androidnativeapp1.translator.ScanQrCode
+import com.example.androidnativeapp1.video_chat.ChatInitialPage
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -39,19 +42,19 @@ class SavedTranslations : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home_tab -> {
-                    setContentView(R.layout.home)
+                    startActivity(Intent(this, Home::class.java))
                     true
                 }
                 R.id.camera_tab -> {
-                    setContentView(R.layout.scan_qr_code)
+                    startActivity(Intent(this, ScanQrCode::class.java))
                     true
                 }
                 R.id.learn_tab -> {
-                    setContentView(R.layout.list_of_lessons)
+                    startActivity(Intent(this, ListOfLessons::class.java))
                     true
                 }
                 R.id.chat_tab -> {
-                    setContentView(R.layout.chat_initial_page)
+                    startActivity(Intent(this, ChatInitialPage::class.java))
                     true
                 }
                 else -> false
