@@ -43,7 +43,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="320dp"
-                android:layout_height="380dp"
+                android:layout_height="320dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="3dp"
@@ -53,13 +53,18 @@
                 android:layout_marginBottom="10dp">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    >
 
+                    <androidx.camera.view.PreviewView
+                        android:id="@+id/viewFinder"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
 
                 </LinearLayout>
+
             </com.google.android.material.card.MaterialCardView>
 
             <Button
