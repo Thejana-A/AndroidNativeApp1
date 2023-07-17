@@ -104,7 +104,7 @@ class CameraActivity : Activity(), LifecycleOwner {
 
             // Select back camera as a default
             val cameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager
-            val cameraId = cameraManager.cameraIdList.firstOrNull()
+            val cameraId = cameraManager.cameraIdList[1]
             val characteristics = cameraManager.getCameraCharacteristics(cameraId.toString())
             val facing = characteristics.get(CameraCharacteristics.LENS_FACING)
 

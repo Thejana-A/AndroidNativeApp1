@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import androidx.core.app.ActivityCompat
 import com.example.androidnativeapp1.R
 
 
@@ -26,7 +27,13 @@ class SessionStartView : AppCompatActivity() {
             startActivity(Intent(this, CancelSessionLayout::class.java))
         }
 
+
     }
+
+    // Check if all permissions are granted
+
 
 
 }
+
+

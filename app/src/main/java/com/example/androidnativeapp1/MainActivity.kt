@@ -45,6 +45,8 @@ class MainActivity : AppCompatActivity() {
         handler.postDelayed(runnable, timeoutDuration)
 
 
+
+
         /*val signupFinishButton: Button = findViewById(R.id.signupFinishButton)
         signupFinishButton.setOnClickListener {
             viewSavedTranslationDialog()
