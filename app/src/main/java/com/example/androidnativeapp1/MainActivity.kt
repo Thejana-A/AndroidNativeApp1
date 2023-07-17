@@ -33,16 +33,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*val logoImage: ImageView = findViewById(R.id.logoImage)
+        val logoImage: ImageView = findViewById(R.id.logoImage)
         logoImage.setOnClickListener {
             startActivity(Intent(this, Onboarding1::class.java))
-        } */
-        val handler = Handler()
+        }
+
+        /*val handler = Handler()
         val runnable = Runnable {
             startActivity(Intent(this, Onboarding1::class.java))
         }
         val timeoutDuration = 3000L
-        handler.postDelayed(runnable, timeoutDuration)
+        handler.postDelayed(runnable, timeoutDuration) */
 
 
         /*val signupFinishButton: Button = findViewById(R.id.signupFinishButton)

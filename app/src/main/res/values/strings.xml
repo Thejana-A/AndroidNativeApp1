@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidNativeApp1</string>
+    <string name="app_name">Be My Voice</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <string name="title_activity_secondary">SecondaryActivity</string>
