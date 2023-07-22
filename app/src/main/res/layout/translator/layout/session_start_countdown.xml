@@ -26,14 +26,14 @@
                 android:gravity="center"
                 android:text="The session will start in" />
             <TextView
+                android:id="@+id/countdownTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="70dp"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
                 android:textColor="#147B72"
-                android:gravity="center"
-                android:text="03" />
+                android:gravity="center" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
