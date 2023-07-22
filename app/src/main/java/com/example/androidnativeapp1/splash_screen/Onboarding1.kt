@@ -5,11 +5,15 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidnativeapp1.R
+import android.transition.ChangeBounds
+import android.transition.TransitionManager
 
 
 class Onboarding1 : AppCompatActivity() {
 
+    private lateinit var container: ConstraintLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.onboarding1)

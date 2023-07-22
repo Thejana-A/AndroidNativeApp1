@@ -1,6 +1,7 @@
 package com.example.androidnativeapp1.signup
 
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.DatePicker
 import com.example.androidnativeapp1.R
+import com.example.androidnativeapp1.login.Login
 import com.example.androidnativeapp1.splash_screen.Onboarding4
 import java.util.Calendar
 
@@ -28,11 +30,21 @@ class SignupFinish : AppCompatActivity() {
 
         val finishSignup: Button = findViewById(R.id.signupFinishButton)
         finishSignup.setOnClickListener {
-            startActivity(Intent(this, SignupFinishLayout::class.java))
+            signupFinishDialog()
         }
     }
 
+    private fun signupFinishDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.signup_finish_layout)
 
+        val signupFinishLoginButton = dialog.findViewById<Button>(R.id.signupFinishLoginButton)
+        signupFinishLoginButton.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, Login::class.java))
+        }
 
+        dialog.show()
+    }
 
 }

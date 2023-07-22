@@ -1,16 +1,22 @@
 package com.example.androidnativeapp1.video_chat
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import com.example.androidnativeapp1.ConfirmLogoutLayout
 import com.example.androidnativeapp1.LeftDrawerLayout
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.home.Home
 import com.example.androidnativeapp1.learn.ListOfLessons
+import com.example.androidnativeapp1.login.Login
+import com.example.androidnativeapp1.settings.Profile
 import com.example.androidnativeapp1.translator.ScanQrCode
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -28,7 +34,7 @@ class ContactList : AppCompatActivity() {
 
         val inviteFriendButton: Button = findViewById(R.id.inviteFriendButton)
         inviteFriendButton.setOnClickListener {
-            startActivity(Intent(this, InviteFriendLayout::class.java))
+            inviteFriendDialog()
         }
 
         val backButton: TextView = findViewById(R.id.backButton)
@@ -38,7 +44,7 @@ class ContactList : AppCompatActivity() {
 
         val leftDrawerIcon: ImageView = findViewById(R.id.leftDrawerIcon)
         leftDrawerIcon.setOnClickListener {
-            startActivity(Intent(this, LeftDrawerLayout::class.java))
+            displayLeftDrawer()
         }
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -68,4 +74,66 @@ class ContactList : AppCompatActivity() {
     }
 
 
+    private fun displayLeftDrawer() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.left_drawer_layout)
+
+        val window = dialog.window
+        val layoutParams = window?.attributes
+        layoutParams?.apply {
+            gravity = Gravity.TOP or Gravity.START
+        }
+        window?.attributes = layoutParams
+        dialog.show()
+
+
+        val closeLeftDrawerButton = dialog.findViewById<TextView>(R.id.closeLeftDrawerButton)
+        closeLeftDrawerButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        val settingsButton = dialog.findViewById<LinearLayout>(R.id.settingsButton)
+        settingsButton.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, Profile::class.java))
+        }
+        val logoutButton = dialog.findViewById<LinearLayout>(R.id.logoutButton)
+        logoutButton.setOnClickListener {
+            dialog.dismiss()
+            confirmLogoutDialog()
+        }
+    }
+
+    private fun inviteFriendDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.invite_friend_layout)
+
+        val inviteButton = dialog.findViewById<Button>(R.id.inviteButton)
+        inviteButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        val cancelButton = dialog.findViewById<Button>(R.id.cancelButton)
+        cancelButton.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    private fun confirmLogoutDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.confirm_logout_layout)
+
+        val confirmLogoutButton = dialog.findViewById<Button>(R.id.confirmLogoutButton)
+        confirmLogoutButton.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, Login::class.java))
+        }
+
+        val cancelLogoutButton = dialog.findViewById<Button>(R.id.cancelLogoutButton)
+        cancelLogoutButton.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
 }

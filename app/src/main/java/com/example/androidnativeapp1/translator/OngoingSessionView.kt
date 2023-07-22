@@ -1,5 +1,6 @@
 package com.example.androidnativeapp1.translator
 
+import android.Manifest
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -61,7 +62,6 @@ class OngoingSessionView : AppCompatActivity() {
     }
 
     /** Check if this device has a camera */
-
 
 
 }

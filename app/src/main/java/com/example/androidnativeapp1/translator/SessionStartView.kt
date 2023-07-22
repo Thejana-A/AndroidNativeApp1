@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import androidx.core.app.ActivityCompat
 import com.example.androidnativeapp1.R
+import com.example.androidnativeapp1.home.Home
 
 
 class SessionStartView : AppCompatActivity() {
@@ -52,10 +53,22 @@ class SessionStartView : AppCompatActivity() {
         val cancelSessionButton = dialog.findViewById<Button>(R.id.cancelSessionButton)
         cancelSessionButton.setOnClickListener {
             dialog.dismiss()
-            startActivity(Intent(this, SessionCompletedLayout::class.java))
+            sessionCompletedDialog()
         }
         dialog.show()
     }
-    
+
+    private fun sessionCompletedDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.session_completed_layout)
+
+        val backToHomeButton = dialog.findViewById<Button>(R.id.backToHomeButton)
+        backToHomeButton.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, Home::class.java))
+        }
+        dialog.show()
+    }
+
 }
 

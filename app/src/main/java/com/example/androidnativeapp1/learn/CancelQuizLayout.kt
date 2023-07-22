@@ -18,11 +18,10 @@ class CancelQuizLayout : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        quizCompletedDialog()
-
+        cancelQuizDialog()
     }
 
-    private fun quizCompletedDialog() {
+    private fun cancelQuizDialog() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.cancel_quiz_layout)
 

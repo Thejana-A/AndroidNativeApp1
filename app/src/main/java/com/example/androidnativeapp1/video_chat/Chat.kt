@@ -1,7 +1,9 @@
 package com.example.androidnativeapp1.video_chat
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ImageView
@@ -32,7 +34,7 @@ class Chat : AppCompatActivity() {
 
         val viewChatOptions: LinearLayout = findViewById(R.id.viewChatOptions)
         viewChatOptions.setOnClickListener {
-            startActivity(Intent(this, ChatOptionsLayout::class.java))
+            showChatOptionsDialog()
         }
 
 
@@ -59,8 +61,25 @@ class Chat : AppCompatActivity() {
             }
         }
         bottomNavigationView.getMenu().getItem(3).setChecked(true)
-
     }
 
+
+    private fun showChatOptionsDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.chat_options_layout)
+
+        val window = dialog.window
+        val layoutParams = window?.attributes
+        layoutParams?.apply {
+            gravity = Gravity.TOP or Gravity.END
+        }
+
+        window?.attributes = layoutParams
+        dialog.show()
+
+        dialog.setOnDismissListener{
+            startActivity(Intent(this, Chat::class.java))
+        }
+    }
 
 }
