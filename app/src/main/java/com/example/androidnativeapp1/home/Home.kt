@@ -4,11 +4,13 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
+import android.view.animation.AlphaAnimation
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidnativeapp1.ConfirmLogoutLayout
 import com.example.androidnativeapp1.LeftDrawerLayout
 import com.example.androidnativeapp1.R
@@ -25,6 +27,10 @@ class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
 
         val startSession: Button = findViewById(R.id.startSession)
         startSession.setOnClickListener {
@@ -69,6 +75,10 @@ class Home : AppCompatActivity() {
     private fun displayLeftDrawer() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.left_drawer_layout)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
 
         val window = dialog.window
         val layoutParams = window?.attributes
@@ -100,6 +110,10 @@ class Home : AppCompatActivity() {
     private fun confirmLogoutDialog() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.confirm_logout_layout)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
 
         val confirmLogoutButton = dialog.findViewById<Button>(R.id.confirmLogoutButton)
         confirmLogoutButton.setOnClickListener {

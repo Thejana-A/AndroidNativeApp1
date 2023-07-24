@@ -4,12 +4,14 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
+import android.view.animation.AlphaAnimation
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidnativeapp1.ConfirmLogoutLayout
 import com.example.androidnativeapp1.LeftDrawerLayout
 import com.example.androidnativeapp1.R
@@ -27,6 +29,10 @@ class SavedTranslations : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.saved_translations)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
 
         val backToHome: TextView = findViewById(R.id.backToHome)
         backToHome.setOnClickListener {
@@ -71,6 +77,10 @@ class SavedTranslations : AppCompatActivity() {
     private fun displayLeftDrawer() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.left_drawer_layout)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
 
         val window = dialog.window
         val layoutParams = window?.attributes
@@ -103,6 +113,10 @@ class SavedTranslations : AppCompatActivity() {
     private fun viewSavedTranslationDialog() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.view_translation_layout)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
 
         val closeSavedTranslationButton = dialog.findViewById<TextView>(R.id.closeSavedTranslationButton)
         closeSavedTranslationButton.setOnClickListener {
