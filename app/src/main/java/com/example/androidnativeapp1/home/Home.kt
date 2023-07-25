@@ -12,7 +12,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidnativeapp1.ConfirmLogoutLayout
+import com.example.androidnativeapp1.HelpCenter
 import com.example.androidnativeapp1.LeftDrawerLayout
+import com.example.androidnativeapp1.Notifications
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.learn.ListOfLessons
 import com.example.androidnativeapp1.login.Login
@@ -45,6 +47,11 @@ class Home : AppCompatActivity() {
         val leftDrawerIcon: ImageView = findViewById(R.id.leftDrawerIcon)
         leftDrawerIcon.setOnClickListener {
             displayLeftDrawer()
+        }
+
+        val notificationIcon: ImageView = findViewById(R.id.notificationIcon)
+        notificationIcon.setOnClickListener {
+            startActivity(Intent(this, Notifications::class.java))
         }
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -98,6 +105,11 @@ class Home : AppCompatActivity() {
         settingsButton.setOnClickListener {
             dialog.dismiss()
             startActivity(Intent(this, Profile::class.java))
+        }
+        val helpButton = dialog.findViewById<LinearLayout>(R.id.helpButton)
+        helpButton.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, HelpCenter::class.java))
         }
         val logoutButton = dialog.findViewById<LinearLayout>(R.id.logoutButton)
         logoutButton.setOnClickListener {

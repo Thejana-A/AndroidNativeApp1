@@ -2,11 +2,13 @@ package com.example.androidnativeapp1.settings
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.AlphaAnimation
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidnativeapp1.LeftDrawerLayout
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.home.Home
@@ -22,6 +24,10 @@ class Profile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
 
         val backButton: TextView = findViewById(R.id.backButton)
         backButton.setOnClickListener {
@@ -35,7 +41,7 @@ class Profile : AppCompatActivity() {
 
         val notificationsButton: LinearLayout = findViewById(R.id.notifications)
         notificationsButton.setOnClickListener {
-            startActivity(Intent(this, Notifications::class.java))
+            startActivity(Intent(this, NotificationSettings::class.java))
         }
 
         val privacyPolicyButton: LinearLayout = findViewById(R.id.privacyPolicy)

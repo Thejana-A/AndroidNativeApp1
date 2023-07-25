@@ -4,14 +4,18 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
+import android.view.animation.AlphaAnimation
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidnativeapp1.ConfirmLogoutLayout
+import com.example.androidnativeapp1.HelpCenter
 import com.example.androidnativeapp1.LeftDrawerLayout
+import com.example.androidnativeapp1.Notifications
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.home.Home
 import com.example.androidnativeapp1.learn.ListOfLessons
@@ -27,6 +31,10 @@ class ChatInitialPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chat_initial_page)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
 
         val chatList: TextView = findViewById(R.id.chatList)
         chatList.setOnClickListener {
@@ -41,6 +49,11 @@ class ChatInitialPage : AppCompatActivity() {
         val leftDrawerIcon: ImageView = findViewById(R.id.leftDrawerIcon)
         leftDrawerIcon.setOnClickListener {
             displayLeftDrawer()
+        }
+
+        val notificationIcon: ImageView = findViewById(R.id.notificationIcon)
+        notificationIcon.setOnClickListener {
+            startActivity(Intent(this, Notifications::class.java))
         }
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -92,6 +105,11 @@ class ChatInitialPage : AppCompatActivity() {
         settingsButton.setOnClickListener {
             dialog.dismiss()
             startActivity(Intent(this, Profile::class.java))
+        }
+        val helpButton = dialog.findViewById<LinearLayout>(R.id.helpButton)
+        helpButton.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, HelpCenter::class.java))
         }
         val logoutButton = dialog.findViewById<LinearLayout>(R.id.logoutButton)
         logoutButton.setOnClickListener {

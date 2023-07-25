@@ -22,6 +22,10 @@ import com.example.androidnativeapp1.video_chat.ChatList
 import com.example.androidnativeapp1.video_chat.ChatOptionsLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.graphics.Bitmap
+import android.view.animation.AlphaAnimation
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.androidnativeapp1.HelpCenter
+import com.example.androidnativeapp1.Notifications
 import com.example.androidnativeapp1.login.Login
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
@@ -35,6 +39,10 @@ class ScanQrCode : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.scan_qr_code)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
 
         val url = "https://cmb.ac.lk/category/ucsc"
         val qrCodeBitmap = generateQRCode(url)
@@ -49,6 +57,11 @@ class ScanQrCode : AppCompatActivity() {
         val leftDrawerIcon: ImageView = findViewById(R.id.leftDrawerIcon)
         leftDrawerIcon.setOnClickListener {
             displayLeftDrawer()
+        }
+
+        val notificationIcon: ImageView = findViewById(R.id.notificationIcon)
+        notificationIcon.setOnClickListener {
+            startActivity(Intent(this, Notifications::class.java))
         }
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -80,6 +93,10 @@ class ScanQrCode : AppCompatActivity() {
     private fun displayLeftDrawer() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.left_drawer_layout)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
 
         val window = dialog.window
         val layoutParams = window?.attributes
@@ -99,6 +116,11 @@ class ScanQrCode : AppCompatActivity() {
         settingsButton.setOnClickListener {
             dialog.dismiss()
             startActivity(Intent(this, Profile::class.java))
+        }
+        val helpButton = dialog.findViewById<LinearLayout>(R.id.helpButton)
+        helpButton.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, HelpCenter::class.java))
         }
         val logoutButton = dialog.findViewById<LinearLayout>(R.id.logoutButton)
         logoutButton.setOnClickListener {
@@ -129,6 +151,10 @@ class ScanQrCode : AppCompatActivity() {
     private fun confirmLogoutDialog() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.confirm_logout_layout)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
 
         val confirmLogoutButton = dialog.findViewById<Button>(R.id.confirmLogoutButton)
         confirmLogoutButton.setOnClickListener {

@@ -1,23 +1,23 @@
-package com.example.androidnativeapp1.learn
+package com.example.androidnativeapp1
 
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.animation.AlphaAnimation
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidnativeapp1.ConfirmLogoutLayout
-import com.example.androidnativeapp1.HelpCenter
 import com.example.androidnativeapp1.LeftDrawerLayout
-import com.example.androidnativeapp1.Notifications
 import com.example.androidnativeapp1.R
+import com.example.androidnativeapp1.databinding.ViewTranslationLayoutBinding
 import com.example.androidnativeapp1.home.Home
+import com.example.androidnativeapp1.learn.ListOfLessons
 import com.example.androidnativeapp1.login.Login
 import com.example.androidnativeapp1.settings.Profile
 import com.example.androidnativeapp1.translator.ScanQrCode
@@ -25,34 +25,25 @@ import com.example.androidnativeapp1.video_chat.ChatInitialPage
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-class ListOfQuizzes : AppCompatActivity() {
+class Notifications : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.list_of_quizzes)
+        setContentView(R.layout.notifications)
         val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
         fadeInAnimation.duration = 1000
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
 
-        val linkToQuiz: Button = findViewById(R.id.linkToQuiz)
-        linkToQuiz.setOnClickListener {
-            startActivity(Intent(this, OngoingQuiz::class.java))
+        val backButton: TextView = findViewById(R.id.backButton)
+        backButton.setOnClickListener {
+            finish()
         }
 
-        val lessonsButton: Button = findViewById(R.id.lessonsButton)
-        lessonsButton.setOnClickListener {
-            startActivity(Intent(this, ListOfLessons::class.java))
-        }
 
         val leftDrawerIcon: ImageView = findViewById(R.id.leftDrawerIcon)
         leftDrawerIcon.setOnClickListener {
             displayLeftDrawer()
-        }
-
-        val notificationIcon: ImageView = findViewById(R.id.notificationIcon)
-        notificationIcon.setOnClickListener {
-            startActivity(Intent(this, Notifications::class.java))
         }
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -77,10 +68,8 @@ class ListOfQuizzes : AppCompatActivity() {
                 else -> false
             }
         }
-        bottomNavigationView.getMenu().getItem(2).setChecked(true)
 
     }
-
 
     private fun displayLeftDrawer() {
         val dialog = Dialog(this)
@@ -109,16 +98,12 @@ class ListOfQuizzes : AppCompatActivity() {
             dialog.dismiss()
             startActivity(Intent(this, Profile::class.java))
         }
-        val helpButton = dialog.findViewById<LinearLayout>(R.id.helpButton)
-        helpButton.setOnClickListener {
-            dialog.dismiss()
-            startActivity(Intent(this, HelpCenter::class.java))
-        }
         val logoutButton = dialog.findViewById<LinearLayout>(R.id.logoutButton)
         logoutButton.setOnClickListener {
             dialog.dismiss()
             confirmLogoutDialog()
         }
+
     }
 
     private fun confirmLogoutDialog() {
@@ -141,4 +126,5 @@ class ListOfQuizzes : AppCompatActivity() {
         }
         dialog.show()
     }
+
 }
