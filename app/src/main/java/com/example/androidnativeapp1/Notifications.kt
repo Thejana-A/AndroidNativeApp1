@@ -98,6 +98,11 @@ class Notifications : AppCompatActivity() {
             dialog.dismiss()
             startActivity(Intent(this, Profile::class.java))
         }
+        val helpButton = dialog.findViewById<LinearLayout>(R.id.helpButton)
+        helpButton.setOnClickListener {
+            dialog.dismiss()
+            startActivity(Intent(this, HelpCenter::class.java))
+        }
         val logoutButton = dialog.findViewById<LinearLayout>(R.id.logoutButton)
         logoutButton.setOnClickListener {
             dialog.dismiss()

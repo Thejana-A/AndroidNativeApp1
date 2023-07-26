@@ -22,7 +22,11 @@ import com.example.androidnativeapp1.settings.Profile
 import com.example.androidnativeapp1.translator.ScanQrCode
 import com.example.androidnativeapp1.video_chat.ChatInitialPage
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
+import android.graphics.Color
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 
 class Home : AppCompatActivity() {
 
@@ -33,6 +37,24 @@ class Home : AppCompatActivity() {
         fadeInAnimation.duration = 1000
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
+
+        val pieChart = findViewById<PieChart>(R.id.pieChart)
+        val pieEntries = listOf(
+            PieEntry(30f, "Completed"),
+            PieEntry(70f, "Remaining"),
+        )
+        val dataSet = PieDataSet(pieEntries, "")
+        dataSet.colors = listOf(Color.parseColor("#147B72"), Color.parseColor("#898A8D"))
+        val pieData = PieData(dataSet)
+        pieChart.apply {
+            data = pieData
+            description.isEnabled = false
+            setEntryLabelTextSize(12f)
+            setEntryLabelColor(Color.BLACK)
+            setHoleColor(Color.TRANSPARENT)
+            animateXY(1000, 1000)
+        }
+
 
         val startSession: Button = findViewById(R.id.startSession)
         startSession.setOnClickListener {
