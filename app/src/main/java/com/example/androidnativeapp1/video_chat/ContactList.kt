@@ -1,5 +1,6 @@
 package com.example.androidnativeapp1.video_chat
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -23,7 +24,13 @@ import com.example.androidnativeapp1.login.Login
 import com.example.androidnativeapp1.settings.Profile
 import com.example.androidnativeapp1.translator.ScanQrCode
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.content.ContentResolver
+import android.content.Context
+import android.provider.ContactsContract
+import android.view.ViewGroup
+import android.widget.FrameLayout
 
+data class Contact(val name: String, val phoneNumber: String)
 
 class ContactList : AppCompatActivity() {
 
@@ -34,6 +41,17 @@ class ContactList : AppCompatActivity() {
         fadeInAnimation.duration = 1000
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
+
+        val contactList = getContactList(this)
+        var contactListString = ""
+        val contactListLayout = findViewById<LinearLayout>(R.id.contactListLayout)
+        var contactIndex = 0
+        for (contact in contactList) {
+            contactListString += "Name: ${contact.name}" + " " + "Phone: ${contact.phoneNumber}"
+        }
+
+        val contactListHeader:TextView = findViewById(R.id.contactListHeader)
+        contactListHeader.text = contactListString
 
         val viewChatConversation: CardView = findViewById(R.id.viewChatConversation)
         viewChatConversation.setOnClickListener {
@@ -166,4 +184,40 @@ class ContactList : AppCompatActivity() {
         }
         dialog.show()
     }
+
+    @SuppressLint("Range")
+    fun getContactList(context: Context): List<Contact> {
+        val contactsList = mutableListOf<Contact>()
+        val contentResolver: ContentResolver = context.contentResolver
+
+        // Define the columns you want to retrieve
+        val projection = arrayOf(
+            ContactsContract.Contacts.DISPLAY_NAME,
+            ContactsContract.CommonDataKinds.Phone.NUMBER
+        )
+
+        // Perform the query on the contacts table
+        val cursor = contentResolver.query(
+            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+            projection,
+            null,
+            null,
+            null
+        )
+
+        cursor?.use {
+            while (it.moveToNext()) {
+                val name =
+                    it.getString(it.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
+                val phoneNumber =
+                    it.getString(it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+
+                contactsList.add(Contact(name, phoneNumber))
+            }
+        }
+
+        cursor?.close()
+        return contactsList
+    }
+
 }
