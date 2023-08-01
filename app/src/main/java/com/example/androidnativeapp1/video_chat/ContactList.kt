@@ -29,11 +29,14 @@ import android.content.Context
 import android.provider.ContactsContract
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 data class Contact(val name: String, val phoneNumber: String)
 
 class ContactList : AppCompatActivity() {
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.contact_list)
@@ -44,16 +47,22 @@ class ContactList : AppCompatActivity() {
 
         val contactList = getContactList(this)
         var contactListString = ""
-        val contactListLayout = findViewById<LinearLayout>(R.id.contactListLayout)
-        var contactIndex = 0
+
+        val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
+        recyclerview.layoutManager = LinearLayoutManager(this)
+
+        // ArrayList of class ItemsViewModel
+        val data = ArrayList<ContactViewModel>()
         for (contact in contactList) {
-            contactListString += "Name: ${contact.name}" + " " + "Phone: ${contact.phoneNumber}"
+            data.add(ContactViewModel(R.drawable.profile_picture, "${contact.name}", "${contact.phoneNumber}"))
+            //contactListString += "Name: ${contact.name}" + " " + "Phone: ${contact.phoneNumber}"
         }
 
-        val contactListHeader:TextView = findViewById(R.id.contactListHeader)
-        contactListHeader.text = contactListString
+        val adapter = ContactAdapter(data)
+        recyclerview.adapter = adapter
 
-        val viewChatConversation: CardView = findViewById(R.id.viewChatConversation)
+
+        /*val viewChatConversation: CardView = findViewById(R.id.viewChatConversation)
         viewChatConversation.setOnClickListener {
             startActivity(Intent(this, Chat::class.java))
         }
@@ -61,7 +70,7 @@ class ContactList : AppCompatActivity() {
         val inviteFriendButton: Button = findViewById(R.id.inviteFriendButton)
         inviteFriendButton.setOnClickListener {
             inviteFriendDialog()
-        }
+        } */
 
         val backButton: TextView = findViewById(R.id.backButton)
         backButton.setOnClickListener {

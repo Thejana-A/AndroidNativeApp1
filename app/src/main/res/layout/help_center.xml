@@ -116,6 +116,7 @@
                         android:layout_marginTop="10dp" />
 
                     <Button
+                        android:id="@+id/reportProblemButton"
                         android:layout_width="200dp"
                         android:layout_height="60dp"
                         android:layout_marginLeft="0dp"

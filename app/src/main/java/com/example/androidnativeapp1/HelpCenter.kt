@@ -2,6 +2,7 @@ package com.example.androidnativeapp1
 
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.app.Dialog
 import android.content.Intent
 import android.provider.MediaStore
 import android.os.Bundle
@@ -14,6 +15,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidnativeapp1.R
+import com.example.androidnativeapp1.login.Login
 import java.util.Calendar
 
 
@@ -29,6 +31,11 @@ class HelpCenter : AppCompatActivity() {
         fadeInAnimation.duration = 1000
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
+
+        val reportProblemButton: Button = findViewById(R.id.reportProblemButton)
+        reportProblemButton.setOnClickListener {
+            reportProblem()
+        }
 
         val selectFile: Button = findViewById(R.id.selectFile)
         selectFile.setOnClickListener {
@@ -55,6 +62,22 @@ class HelpCenter : AppCompatActivity() {
             val selectFile: Button = findViewById(R.id.selectFile)
             selectFile.setText(selectedFilePath)
         }
+    }
+
+    private fun reportProblem() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.report_problem_layout)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
+
+        val closeButton = dialog.findViewById<Button>(R.id.closeButton)
+        closeButton.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
 }
