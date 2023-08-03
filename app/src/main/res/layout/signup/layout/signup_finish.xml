@@ -74,6 +74,7 @@
                     android:layout_marginLeft="40dp"
                     android:text="Choose your subscription type" />
                 <Button
+                    android:id="@+id/goPremiumButton"
                     android:layout_width="230dp"
                     android:layout_height="60dp"
                     app:cornerRadius="5dp"

@@ -34,6 +34,11 @@ class SignupFinish : AppCompatActivity() {
             startActivity(Intent(this, Signup::class.java))
         }
 
+        val goPremiumButton: Button = findViewById(R.id.goPremiumButton)
+        goPremiumButton.setOnClickListener {
+            startActivity(Intent(this, CheckoutActivity::class.java))
+        }
+
         val finishSignup: Button = findViewById(R.id.signupFinishButton)
         finishSignup.setOnClickListener {
             signupFinishDialog()

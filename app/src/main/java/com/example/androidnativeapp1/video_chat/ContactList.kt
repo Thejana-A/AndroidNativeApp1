@@ -45,6 +45,12 @@ class ContactList : AppCompatActivity() {
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
 
+        var inviteStatus = intent.getStringExtra("invite_status")
+        if(inviteStatus == "true"){
+            inviteStatus = ""
+            inviteFriendDialog()
+        }
+
         val contactList = getContactList(this)
         var contactListString = ""
 
@@ -153,7 +159,7 @@ class ContactList : AppCompatActivity() {
         }
     }
 
-    private fun inviteFriendDialog() {
+    fun inviteFriendDialog() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.invite_friend_layout)
         val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)

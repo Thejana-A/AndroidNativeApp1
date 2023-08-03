@@ -141,7 +141,6 @@
                 android:layout_marginRight="50dp">
 
                 <TextView
-                    android:id="@+id/textView4u"
                     android:layout_width="265dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
@@ -207,6 +206,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/contactNameTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jenny Lopez"
