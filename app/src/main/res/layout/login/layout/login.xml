@@ -69,7 +69,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="80dp">
                 <EditText
-                    android:id="@+id/editText1"
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="   Enter your email"
@@ -78,7 +78,7 @@
                     android:paddingLeft="20dp"
                     android:inputType="text" />
                 <EditText
-                    android:id="@+id/editText2"
+                    android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:hint="   Enter your password"
@@ -99,6 +99,16 @@
                     android:text="Forgot password?"
                     android:textColor="#147B72"
                     android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/errorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#CC0000"
+                    android:text="" />
 
                 <Button
                     android:id="@+id/loginButton"

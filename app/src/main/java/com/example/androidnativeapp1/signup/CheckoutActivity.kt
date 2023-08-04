@@ -77,12 +77,11 @@ class CheckoutActivity : AppCompatActivity() {
                     displayAlert(this, "Error !", "$error")
                 }
             }
-        })   */
+        }) */
 
         // Confirm the PaymentIntent with the card widget
         val payButton: Button = findViewById(R.id.payButton)
         payButton.setOnClickListener {
-            startActivity(Intent(this, SignupFinish::class.java))
             val cardInputWidget = findViewById<com.stripe.android.view.CardInputWidget>(R.id.cardInputWidget)
             cardInputWidget.paymentMethodCreateParams?.let { params ->
                 val confirmParams = ConfirmPaymentIntentParams

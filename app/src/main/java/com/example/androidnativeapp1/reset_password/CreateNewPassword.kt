@@ -7,9 +7,11 @@ import android.view.animation.AlphaAnimation
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import android.widget.EditText
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.login.Login
+import com.example.androidnativeapp1.signup.SignupFinish
 
 
 class CreateNewPassword: AppCompatActivity() {
@@ -29,7 +31,19 @@ class CreateNewPassword: AppCompatActivity() {
 
         val createNewPasswordButton: Button = findViewById(R.id.createNewPasswordButton)
         createNewPasswordButton.setOnClickListener {
-            resetPasswordFinishDialog()
+            val password: EditText = findViewById(R.id.password)
+            val confirmPassword: EditText = findViewById(R.id.confirmPassword)
+            val passwordText = password.text.toString()
+            val confirmPasswordText = confirmPassword.text.toString()
+            val errorText: TextView = findViewById(R.id.errorText)
+            if((password.text).length <= 8){
+                errorText.text = "Password should have more than 8 characters !"
+            }else if(!(passwordText.equals(confirmPasswordText))){
+                errorText.text = "Confirm password correctly !"
+            }else{
+                resetPasswordFinishDialog()
+            }
+
         }
     }
 
