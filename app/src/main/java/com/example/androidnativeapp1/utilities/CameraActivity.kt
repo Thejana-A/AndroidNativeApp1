@@ -15,6 +15,8 @@ import android.Manifest
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.hardware.Camera
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -104,7 +106,13 @@ class CameraActivity : Activity(), LifecycleOwner {
 
             // Select back camera as a default
             val cameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager
-            val cameraId = cameraManager.cameraIdList[1]
+            var cameraId = cameraManager.cameraIdList[0]
+            try {
+//                cameraId = cameraManager.cameraIdList[1]
+            } finally {
+                Log.i(TAG, "startCamera: ${cameraId}")
+            }
+
             val characteristics = cameraManager.getCameraCharacteristics(cameraId.toString())
             val facing = characteristics.get(CameraCharacteristics.LENS_FACING)
 
@@ -123,16 +131,89 @@ class CameraActivity : Activity(), LifecycleOwner {
                     this, cameraSelector, preview
                 )
 
-            } catch(exc: Exception) {
+            } catch (exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
             }
+
+            captureVideo();
 
         }, ContextCompat.getMainExecutor(this))
     }
 
     private fun takePhoto() {}
 
-    private fun captureVideo() {}
+    private fun captureVideo(curRecoring: Recording? = null) {
+
+        Log.d(TAG, "captureVideo function called")
+        val videoCapture = this.videoCapture
+
+        var isRecording = true
+
+        val curRecording = recording
+        if (curRecording != null) {
+            // Stop the current recording session.
+            curRecording.stop()
+            recording = null
+        }
+
+        // create and start a new recording session
+        val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+
+        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
+            .format(System.currentTimeMillis())
+        val contentValues = ContentValues().apply {
+            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
+            put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4")
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/CameraX-Video")
+            }
+        }
+
+        val mediaStoreOutputOptions = MediaStoreOutputOptions
+            .Builder(contentResolver, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
+            .setContentValues(contentValues)
+            .build()
+        if (videoCapture != null) {
+            recording = videoCapture.output
+                .prepareRecording(this, mediaStoreOutputOptions)
+                .apply {
+                    if (PermissionChecker.checkSelfPermission(
+                            this@CameraActivity,
+                            Manifest.permission.RECORD_AUDIO
+                        ) ==
+                        PermissionChecker.PERMISSION_GRANTED
+                    ) {
+                        withAudioEnabled()
+                    }
+                }
+                .start(ContextCompat.getMainExecutor(this)) { recordEvent ->
+                    when (recordEvent) {
+                        is VideoRecordEvent.Start -> {
+                            Log.d(TAG, "Video capture started")
+                        }
+
+                        is VideoRecordEvent.Finalize -> {
+                            if (!recordEvent.hasError()) {
+                                val msg = "Video capture succeeded: " +
+                                        "${recordEvent.outputResults.outputUri}"
+                                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT)
+                                    .show()
+                                Log.d(TAG, msg)
+                            } else {
+                                recording?.close()
+                                recording = null
+                                Log.e(
+                                    TAG, "Video capture ends with error: " +
+                                            "${recordEvent.error}"
+                                )
+                            }
+                            Log.i(TAG, "Video capture finalized.")
+                        }
+                    }
+                }
+        }
+    }
+
 
     private fun requestPermissions() {}
 
@@ -151,6 +232,12 @@ class CameraActivity : Activity(), LifecycleOwner {
         fun start(ongoingSessionView: OngoingSessionView) {
             val intent = Intent(ongoingSessionView, CameraActivity::class.java)
             ongoingSessionView.startActivity(intent)
+        }
+
+        fun videoCapture(ongoingSessionView: OngoingSessionView) {
+//            val intent = Intent(ongoingSessionView, CameraActivity::class.java)
+//            ongoingSessionView.startActivity(intent)
+//            captureVideo()
         }
 
         private const val TAG = "CameraXApp"
