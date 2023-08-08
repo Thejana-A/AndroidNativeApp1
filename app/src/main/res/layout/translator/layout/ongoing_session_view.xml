@@ -79,7 +79,9 @@
                 android:textColor="#FF0000"
                 app:strokeColor="#FF0000"
                 app:strokeWidth="2dp"
-                android:text="Leave Session" />
+                android:text="Leave Session"
+                />
+
         </LinearLayout>
     </ScrollView>
 

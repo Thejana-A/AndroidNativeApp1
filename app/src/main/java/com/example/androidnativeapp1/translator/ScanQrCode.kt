@@ -11,6 +11,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.example.androidnativeapp1.ConfirmLogoutLayout
+
+import androidx.core.app.ActivityCompat
+
 import com.example.androidnativeapp1.LeftDrawerLayout
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.home.Home
@@ -169,3 +172,54 @@ class ScanQrCode : AppCompatActivity() {
         dialog.show()
     }
 }
+
+        checkPermissions();
+
+
+
+    }
+
+    private fun checkPermissions() {
+        if (!allPermissionsGranted()) {
+            // Request camera-related permissions, media store permissions, and audio permissions
+            val REQUIRED_PERMISSIONS = arrayOf(
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.RECORD_AUDIO,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            val REQUEST_CODE_PERMISSIONS = 10
+            ActivityCompat.requestPermissions(
+                this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
+            )
+        } else {
+            return;
+        }
+
+    }
+
+    private fun allPermissionsGranted(): Boolean {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.CAMERA
+            ) == android.content.pm.PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.RECORD_AUDIO
+            ) == android.content.pm.PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == android.content.pm.PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == android.content.pm.PackageManager.PERMISSION_GRANTED
+        ) {
+            return true
+        }
+        return false
+    }
+
+}
+

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1026988401330",
+    "project_id": "be-my-voice-b8f2f",
+    "storage_bucket": "be-my-voice-b8f2f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026988401330:android:17074faf0528095d84dfab",
+        "android_client_info": {
+          "package_name": "com.example.androidnativeapp1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026988401330-oero6u56iqpejg4d0lcmv5kf51fu4cri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTSJmW9tUd4JvFUygblm7sTzIA1EcdnAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1026988401330-oero6u56iqpejg4d0lcmv5kf51fu4cri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

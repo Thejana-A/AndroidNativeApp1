@@ -8,7 +8,9 @@ import android.os.SystemClock
 import android.view.animation.AlphaAnimation
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+
 import androidx.constraintlayout.widget.ConstraintLayout
+
 import androidx.core.app.ActivityCompat
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.home.Home
@@ -44,7 +46,9 @@ class SessionStartView : AppCompatActivity() {
             cancelSessionDialog()
         }
 
+
     }
+
 
     private fun cancelSessionDialog() {
         val dialog = Dialog(this)
@@ -85,4 +89,8 @@ class SessionStartView : AppCompatActivity() {
     }
 
 }
+
+    // Check if all permissions are granted
+
+
 
