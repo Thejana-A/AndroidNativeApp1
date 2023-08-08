@@ -256,6 +256,5 @@ class CameraActivity : Activity(), LifecycleOwner {
     override fun getLifecycle(): Lifecycle {
         return lifecycleRegistry
     }
-
 }
 

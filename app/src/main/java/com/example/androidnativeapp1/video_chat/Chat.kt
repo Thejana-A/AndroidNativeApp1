@@ -1,29 +1,34 @@
 package com.example.androidnativeapp1.video_chat
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import android.widget.Button
+import android.view.Gravity
+import android.view.animation.AlphaAnimation
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import com.example.androidnativeapp1.LeftDrawerLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.home.Home
 import com.example.androidnativeapp1.learn.ListOfLessons
-import com.example.androidnativeapp1.learn.OngoingQuiz
 import com.example.androidnativeapp1.translator.ScanQrCode
-import com.example.androidnativeapp1.video_chat.ChatInitialPage
-import com.example.androidnativeapp1.video_chat.ChatOptionsLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
 
 class Chat : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.chat)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
+
+        val contactName = intent.getStringExtra("contact_name")
+        val contactNameTextView: TextView = findViewById(R.id.contactNameTextView)
+        contactNameTextView.text = contactName
 
         val viewChatConversation: ImageView = findViewById(R.id.backButton)
         viewChatConversation.setOnClickListener {
@@ -32,7 +37,7 @@ class Chat : AppCompatActivity() {
 
         val viewChatOptions: LinearLayout = findViewById(R.id.viewChatOptions)
         viewChatOptions.setOnClickListener {
-            startActivity(Intent(this, ChatOptionsLayout::class.java))
+            showChatOptionsDialog()
         }
 
 
@@ -59,8 +64,29 @@ class Chat : AppCompatActivity() {
             }
         }
         bottomNavigationView.getMenu().getItem(3).setChecked(true)
-
     }
 
+
+    private fun showChatOptionsDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.chat_options_layout)
+        val fadeInAnimation = AlphaAnimation(0.0f, 1.0f)
+        fadeInAnimation.duration = 1000
+        val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
+        majorLayout.startAnimation(fadeInAnimation)
+
+        val window = dialog.window
+        val layoutParams = window?.attributes
+        layoutParams?.apply {
+            gravity = Gravity.TOP or Gravity.END
+        }
+
+        window?.attributes = layoutParams
+        dialog.show()
+
+        dialog.setOnDismissListener{
+            startActivity(Intent(this, Chat::class.java))
+        }
+    }
 
 }
