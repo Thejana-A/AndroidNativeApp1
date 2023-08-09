@@ -54,7 +54,7 @@ import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class CameraActivity : Activity(), LifecycleOwner {
+class CameraActivity : AppCompatActivity(), LifecycleOwner {
 
     private lateinit var viewBinding: ActivityMainBinding
     private lateinit var lifecycleRegistry: LifecycleRegistry
@@ -251,10 +251,6 @@ class CameraActivity : Activity(), LifecycleOwner {
                     add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 }
             }.toTypedArray()
-    }
-
-    override fun getLifecycle(): Lifecycle {
-        return lifecycleRegistry
     }
 }
 

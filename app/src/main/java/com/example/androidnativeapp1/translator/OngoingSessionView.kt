@@ -24,16 +24,10 @@ import androidx.constraintlayout.widget.ConstraintLayout
 
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
-import android.widget.Button
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
-import androidx.camera.core.CameraX
 import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
-import androidx.camera.core.SurfaceRequest
 import androidx.camera.video.VideoCapture
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.video.MediaStoreOutputOptions
@@ -42,19 +36,13 @@ import androidx.camera.video.Quality
 import androidx.camera.video.QualitySelector
 import androidx.camera.video.Recorder
 import androidx.camera.video.Recording
-import androidx.camera.video.VideoOutput
 import androidx.camera.video.VideoRecordEvent
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.core.content.PermissionChecker
-import androidx.core.net.toUri
-import androidx.core.util.Consumer
 
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.home.Home
-import com.example.androidnativeapp1.utilities.CameraActivity
 
 import java.io.BufferedReader
 import java.io.DataInputStream
@@ -70,7 +58,6 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-
 
 
 class OngoingSessionView : AppCompatActivity() {
@@ -154,7 +141,13 @@ class OngoingSessionView : AppCompatActivity() {
             videoCapture = VideoCapture.withOutput(recorder)
 
             // Select front camera as a default camera
-            val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
+            var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+
+            try {
+//                cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
+            } catch (exc: Exception) {
+                cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            }
 
             try {
                 // Unbind use cases before rebinding
@@ -182,11 +175,6 @@ class OngoingSessionView : AppCompatActivity() {
             return
         }
 
-        val leaveSession: Button = findViewById(R.id.leaveSession)
-        leaveSession.setOnClickListener {
-           // cancelSessionDialog()
-            //startActivity(Intent(this, CancelSessionLayout::class.java))
-
         // Create a video file name
         val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
             .format(System.currentTimeMillis())
@@ -197,7 +185,6 @@ class OngoingSessionView : AppCompatActivity() {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
                 put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/CameraX-Video")
             }
-
         }
 
         // Create the output options object which contains the file + metadata
@@ -220,6 +207,28 @@ class OngoingSessionView : AppCompatActivity() {
                                 "Video capture succeeded: ${recordEvent.outputResults.outputUri}"
                             outputResult = recordEvent.outputResults
 
+                            isRecording = false
+
+                            // run the skeleton extraction in background thread and send the result to firestore
+                            RunSkeleonExtraction().runSkeleonExtractionInBackgroundThread(
+                                recordEvent.outputResults.outputUri,
+                                this
+                            )
+
+                            // delete the video file from the media store
+                            val contentResolver = this.contentResolver
+                            val uriToDelete = recordEvent.outputResults.outputUri
+                            contentResolver.delete(uriToDelete, null, null)
+
+                        } else {
+                            recording?.close()
+                            recording = null
+                            Log.e(TAG, "Video capture ends with error: ${recordEvent.error}")
+                        }
+                    }
+                }
+            }
+    }
 
 
     private fun cancelSessionDialog() {
@@ -298,30 +307,6 @@ class OngoingSessionView : AppCompatActivity() {
 
     }
 
-    /** Check if this device has a camera */
-
-                            isRecording = false
-
-                            // run the skeleton extraction in background thread and send the result to firestore
-                            RunSkeleonExtraction().runSkeleonExtractionInBackgroundThread(
-                                recordEvent.outputResults.outputUri,
-                                this
-                            )
-
-                            // delete the video file from the media store
-                            val contentResolver = this.contentResolver
-                            val uriToDelete = recordEvent.outputResults.outputUri
-                            contentResolver.delete(uriToDelete, null, null)
-
-                        } else {
-                            recording?.close()
-                            recording = null
-                            Log.e(TAG, "Video capture ends with error: ${recordEvent.error}")
-                        }
-                    }
-                }
-            }
-    }
 
     // Function: Capture Video For Four Seconds
     // This function is used to capture the video for four seconds
@@ -335,10 +320,9 @@ class OngoingSessionView : AppCompatActivity() {
             Log.d(TAG, "uri: ${recording.toString()}")
         }, 5000)
     }
->>>>>>> master
 
     // Function: Handle Video Recording
-    // This function is used to handle the video recording
+// This function is used to handle the video recording
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
     }
@@ -382,7 +366,7 @@ class OngoingSessionView : AppCompatActivity() {
     }
 
     // Function: On Destroy
-    // This function is used to destroy the camera
+// This function is used to destroy the camera
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()

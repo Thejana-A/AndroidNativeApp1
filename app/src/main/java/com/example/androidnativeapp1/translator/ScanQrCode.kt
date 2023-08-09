@@ -171,13 +171,6 @@ class ScanQrCode : AppCompatActivity() {
         }
         dialog.show()
     }
-}
-
-        checkPermissions();
-
-
-
-    }
 
     private fun checkPermissions() {
         if (!allPermissionsGranted()) {
