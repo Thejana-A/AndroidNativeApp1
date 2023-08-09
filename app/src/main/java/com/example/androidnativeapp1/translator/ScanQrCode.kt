@@ -35,10 +35,26 @@ import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.io.BufferedReader
+import java.io.DataInputStream
+import java.io.DataOutputStream
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+import java.nio.charset.StandardCharsets
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 
 
 class ScanQrCode : AppCompatActivity() {
-
+    private val client = OkHttpClient()
+    var httpResponse = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.scan_qr_code)
@@ -47,8 +63,25 @@ class ScanQrCode : AppCompatActivity() {
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
 
-        val url = "https://cmb.ac.lk/category/ucsc"
-        val qrCodeBitmap = generateQRCode(url)
+        val userID = "f69deaaf-5c41-4ba2-8bad-e44e026b516b"
+        val urlToApi = "https://backend-be-my-voice.azurewebsites.net/api/session/create-session"
+        val requestBody = "{\"userID\":\"f69deaaf-5c41-4ba2-8bad-e44e026b516b\"}"
+
+        val scanQrCodeDescription: TextView = findViewById(R.id.scanQrCodeDescription)
+        try {
+            GlobalScope.launch(Dispatchers.IO) {
+                httpResponse = apiCallCreateSession(urlToApi, requestBody)
+            }
+            /*val jsonObject = JSONObject(httpResponse)
+            val sessionID = jsonObject.getString("sessionID")
+            scanQrCodeDescription.text = sessionID */
+        } catch (e: Exception) {
+            scanQrCodeDescription.text = e.toString()
+        }
+
+        //Enter the URL containing session ID returned by response
+        val urlForQrLink = "https://cmb.ac.lk/category/ucsc"
+        val qrCodeBitmap = generateQRCode(urlForQrLink)
         val imageView = findViewById<ImageView>(R.id.QRImageView)
         imageView.setImageBitmap(qrCodeBitmap)
 
@@ -170,6 +203,22 @@ class ScanQrCode : AppCompatActivity() {
             dialog.dismiss()
         }
         dialog.show()
+    }
+
+    fun apiCallCreateSession(urlString: String, requestBody: String): String {
+        val mediaType = "application/json; charset=utf-8".toMediaType()
+
+        val request = Request.Builder()
+            .url(urlString)
+            .post(requestBody.toRequestBody(mediaType))
+            .build()
+
+        val response = client.newCall(request).execute()
+        if (response.isSuccessful) {
+            return response.body?.string() ?: ""
+        } else {
+            throw Exception("HTTP POST request failed with response code: ${response.code}")
+        }
     }
 
     private fun checkPermissions() {

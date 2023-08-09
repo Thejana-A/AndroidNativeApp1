@@ -71,6 +71,10 @@ class OngoingSessionView : AppCompatActivity() {
 
     private var isRecording: Boolean = false
     private var isLeaveSession: Boolean = false
+    private var recordingState: Boolean = false
+
+    private val handler = Handler()
+    private lateinit var runnable: Runnable
 
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,23 +96,55 @@ class OngoingSessionView : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
 
-        // set on click listener for the button of capture photo
-        // it calls a method which is implemented below
-        findViewById<Button>(R.id.leaveSession).setOnClickListener {
-            captureVideoForFourSeconds();
-//            isLeaveSession = true
-            // pop the current activity from the stack
-//            finish()
-        }
-
         // TODO: set on click listener for the button of leave session @Thejana-A
         // TODO: call the video capture method every 4 seconds and run the skeleton extraction in background thread @Thejana-A
         // TODO: implement all the HTTP requests to send the data to the server @Thejana-A
         // TODO: implement the UI for the ongoing session view @Thejana-A
 
+        val pauseButton = findViewById<Button>(R.id.pauseButton)
+        pauseButton.setOnClickListener {
+            if(recordingState == true){
+                recordingState = false
+                pauseButton.text = "Resume"
+                pauseCallingEveryFourSeconds()
+            }else{
+                pauseButton.text = "Pause"
+                recordingState = true
+                startCallingEveryFourSeconds()
+            }
+//            isLeaveSession = true
+            // pop the current activity from the stack
+//            finish()
+        }
+
+        // set on click listener for the button of leave session
+        // it calls a method which is implemented below
+        findViewById<Button>(R.id.leaveSession).setOnClickListener {
+            cancelSessionDialog()
+//            isLeaveSession = true
+            // pop the current activity from the stack
+//            finish()
+        }
+
         outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
+
+    private fun startCallingEveryFourSeconds() {
+        runnable = object : Runnable {
+            override fun run() {
+                captureVideoForFourSeconds()
+                handler.postDelayed(this, 5000) // since it takes 5 seconds to record 4 seconds video
+            }
+        }
+        handler.post(runnable)
+    }
+
+    private fun pauseCallingEveryFourSeconds() {
+        handler.removeCallbacks(runnable)
+    }
+
+
 
     override fun onResume() {
         super.onResume()
@@ -141,12 +177,12 @@ class OngoingSessionView : AppCompatActivity() {
             videoCapture = VideoCapture.withOutput(recorder)
 
             // Select front camera as a default camera
-            var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            var cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
 
             try {
 //                cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
             } catch (exc: Exception) {
-                cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+                cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
             }
 
             try {
@@ -268,9 +304,9 @@ class OngoingSessionView : AppCompatActivity() {
         dialog.show()
     }
 
-    fun postApiCall(message: String) {
+    fun apiCallCreateTranslation(message: String) {
 
-        val serverURL: String = "your URL"
+        val serverURL: String = "https://backend-be-my-voice.azurewebsites.net/api/translation/create-translation"
         val url = URL(serverURL)
         val connection = url.openConnection() as HttpURLConnection
         connection.requestMethod = "POST"

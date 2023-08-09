@@ -69,7 +69,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <Button
-                android:id="@+id/leaveSession"
+                android:id="@+id/pauseButton"
                 android:layout_width="250dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
@@ -77,6 +77,19 @@
                 android:backgroundTint="#FFFFFF"
                 android:textSize="16dp"
                 android:textColor="#FF0000"
+                app:strokeColor="#FF0000"
+                app:strokeWidth="2dp"
+                android:text="Start"
+                />
+
+            <Button
+                android:id="@+id/leaveSession"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#FF0000"
+                android:textSize="16dp"
+                android:textColor="#FFFFFF"
                 app:strokeColor="#FF0000"
                 app:strokeWidth="2dp"
                 android:text="Leave Session"
