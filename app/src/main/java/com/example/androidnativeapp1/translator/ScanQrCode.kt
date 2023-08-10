@@ -49,7 +49,42 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
+import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
+import fuel.Fuel
+import fuel.post
+import kotlinx.coroutines.runBlocking
 import org.json.JSONObject
+
+data class User(
+    @SerializedName("userID") val userId: String,
+    val name: String,
+    val email: String,
+    @SerializedName("passwordHash") val passwordHash: String,
+    val role: String,
+    val status: String,
+    @SerializedName("profilePictureUrl") val profilePictureUrl: String,
+    @SerializedName("phoneNumber") val phoneNumber: String,
+    @SerializedName("dateOfBirth") val dateOfBirth: String
+)
+
+data class Session(
+    @SerializedName("sessionID") val sessionId: String,
+    @SerializedName("userID") val userId: String,
+    val user: User,
+    @SerializedName("startDate") val startDate: String,
+    @SerializedName("endDate") val endDate: String,
+    val status: String
+)
+
+data class ApiResponse(
+    val code: Int,
+    val success: Boolean,
+    val message: String,
+    val data: List<Session>,
+    @SerializedName("errorMessage") val errorMessage: String?
+)
 
 
 class ScanQrCode : AppCompatActivity() {
@@ -71,10 +106,13 @@ class ScanQrCode : AppCompatActivity() {
         try {
             GlobalScope.launch(Dispatchers.IO) {
                 httpResponse = apiCallCreateSession(urlToApi, requestBody)
+                Log.d("httpResponse", httpResponse)
+                val gson = Gson()
+                val apiResponse = gson.fromJson(httpResponse, ApiResponse::class.java)
+
+                scanQrCodeDescription.text = apiResponse.data[0].sessionId
             }
-            /*val jsonObject = JSONObject(httpResponse)
-            val sessionID = jsonObject.getString("sessionID")
-            scanQrCodeDescription.text = sessionID */
+
         } catch (e: Exception) {
             scanQrCodeDescription.text = e.toString()
         }
@@ -107,18 +145,22 @@ class ScanQrCode : AppCompatActivity() {
                     startActivity(Intent(this, Home::class.java))
                     true
                 }
+
                 R.id.camera_tab -> {
                     startActivity(Intent(this, ScanQrCode::class.java))
                     true
                 }
+
                 R.id.learn_tab -> {
                     startActivity(Intent(this, ListOfLessons::class.java))
                     true
                 }
+
                 R.id.chat_tab -> {
                     startActivity(Intent(this, ChatInitialPage::class.java))
                     true
                 }
+
                 else -> false
             }
         }
@@ -165,6 +207,33 @@ class ScanQrCode : AppCompatActivity() {
         }
     }
 
+    fun makePostApiCall() {
+        val userID = "f69deaaf-5c41-4ba2-8bad-e44e026b516b"
+        val urlToApi = "https://backend-be-my-voice.azurewebsites.net/api/session/create-session"
+
+        val requestBody = """
+        {
+            "userid": "$userID"
+        }
+    """.trimIndent()
+
+        val mediaType = "application/json; charset=utf-8".toMediaType()
+        val request = Request.Builder()
+            .url(urlToApi)
+            .post(requestBody.toRequestBody(mediaType))
+            .build()
+
+        val client = OkHttpClient()
+        val response = client.newCall(request).execute()
+
+        val responseBody = response.body?.string()
+        if (responseBody != null) {
+            Log.d("httpResponse", responseBody)
+        }else{
+            Log.d("httpResponse", "null")
+        }
+    }
+
     private fun generateQRCode(url: String): Bitmap? {
         val qrCodeWriter = QRCodeWriter()
         try {
@@ -174,7 +243,15 @@ class ScanQrCode : AppCompatActivity() {
             val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
             for (x in 0 until width) {
                 for (y in 0 until height) {
-                    bmp.setPixel(x, y, if (bitMatrix.get(x, y)) resources.getColor(R.color.black) else resources.getColor(R.color.white))
+                    bmp.setPixel(
+                        x,
+                        y,
+                        if (bitMatrix.get(
+                                x,
+                                y
+                            )
+                        ) resources.getColor(R.color.black) else resources.getColor(R.color.white)
+                    )
                 }
             }
             return bmp

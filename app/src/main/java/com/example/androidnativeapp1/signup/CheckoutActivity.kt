@@ -16,9 +16,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.androidnativeapp1.R
 import com.stripe.android.paymentsheet.PaymentSheet
-import com.github.kittinunf.fuel.httpPost
-import com.github.kittinunf.fuel.json.responseJson
-import com.github.kittinunf.result.Result
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
