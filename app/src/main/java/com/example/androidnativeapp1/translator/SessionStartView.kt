@@ -8,6 +8,7 @@ import android.os.SystemClock
 import android.view.animation.AlphaAnimation
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
+import android.widget.TextView
 
 import androidx.constraintlayout.widget.ConstraintLayout
 
@@ -19,11 +20,15 @@ import com.example.androidnativeapp1.home.Home
 class SessionStartView : AppCompatActivity() {
     val handler = Handler()
     val runnable = Runnable {
-        startActivity(Intent(this, SessionStartCountdown::class.java))
+        /*val intent = Intent(this, SessionStartCountdown::class.java)
+        intent.putExtra("sessionID", intent.getStringExtra("sessionID"))
+        startActivity(intent) */
+        startActivity(Intent(this, SessionStartCountdown::class.java).putExtra("sessionID", intent.getStringExtra("sessionID")))
     }
     val timeoutDuration = 3000L
     var remainingTime = 0L
     var startTime = 0L
+    var convertedSessionID = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +37,15 @@ class SessionStartView : AppCompatActivity() {
         fadeInAnimation.duration = 1000
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
+
+        var sessionID = intent.getStringExtra("sessionID")
+        val parts = intent.getStringExtra("sessionID")?.split("-")
+        if (parts?.size == 5) {
+            convertedSessionID = "${parts[0].take(3)}-${parts[1].take(3)}-${parts[2].take(3)}"
+        }
+        val sessionIdTextView = findViewById<TextView>(R.id.sessionIdTextView)
+        sessionIdTextView.text = convertedSessionID.uppercase()
+
 
         handler.removeCallbacks(runnable)
         startTime = SystemClock.uptimeMillis()
@@ -90,7 +104,6 @@ class SessionStartView : AppCompatActivity() {
 
 }
 
-    // Check if all permissions are granted
-
+// Check if all permissions are granted
 
 

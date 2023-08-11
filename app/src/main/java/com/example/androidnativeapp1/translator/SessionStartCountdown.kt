@@ -27,11 +27,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class SessionStartCountdown : AppCompatActivity() {
     val handler = Handler()
     val runnable = Runnable {
-        startActivity(Intent(this, OngoingSessionView::class.java))
+        startActivity(Intent(this, OngoingSessionView::class.java).putExtra("sessionID", intent.getStringExtra("sessionID")))
     }
     val timeoutDuration = 3000L
     var remainingTime = 0L
     var startTime = 0L
+    var convertedSessionID = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,14 @@ class SessionStartCountdown : AppCompatActivity() {
         fadeInAnimation.duration = 1000
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
+
+        var sessionID = intent.getStringExtra("sessionID")
+        val parts = intent.getStringExtra("sessionID")?.split("-")
+        if (parts?.size == 5) {
+            convertedSessionID = "${parts[0].take(3)}-${parts[1].take(3)}-${parts[2].take(3)}"
+        }
+        val sessionIdTextView = findViewById<TextView>(R.id.sessionIdTextView)
+        sessionIdTextView.text = convertedSessionID.uppercase()
 
         handler.removeCallbacks(runnable)
         startTime = SystemClock.uptimeMillis()

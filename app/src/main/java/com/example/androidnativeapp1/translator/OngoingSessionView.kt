@@ -24,6 +24,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -53,12 +54,20 @@ import java.net.URL
 import java.nio.charset.StandardCharsets
 
 import com.example.androidnativeapp1.utilities.RunSkeleonExtraction
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-
 
 class OngoingSessionView : AppCompatActivity() {
 
@@ -75,6 +84,9 @@ class OngoingSessionView : AppCompatActivity() {
 
     private val handler = Handler()
     private lateinit var runnable: Runnable
+
+    private val client = OkHttpClient()
+    var httpResponse: String = ""
 
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,6 +123,17 @@ class OngoingSessionView : AppCompatActivity() {
                 pauseButton.text = "Pause"
                 recordingState = true
                 startCallingEveryFourSeconds()
+                GlobalScope.launch(Dispatchers.IO) {
+                    val sessionID = intent.getStringExtra("sessionID")
+                    val url = "https://api-be-my-voice.azurewebsites.net/api/translation/get-translation-by-session/$sessionID"
+                    httpResponse = apiCallGetTranslationBySession(url)
+                    Log.d("httpResponse", httpResponse)
+                    val gson = Gson()
+                    val apiResponse = gson.fromJson(httpResponse, ApiResponse::class.java)
+                    val translationTextView = findViewById<TextView>(R.id.translationTextView)
+                    translationTextView.text = apiResponse.data[0].translatedText
+                    Log.d("apiResponse", apiResponse.data[0].translatedText)
+                }
             }
 //            isLeaveSession = true
             // pop the current activity from the stack
@@ -128,6 +151,22 @@ class OngoingSessionView : AppCompatActivity() {
 
         outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
+    }
+
+    fun apiCallGetTranslationBySession(urlString: String): String {
+        val mediaType = "application/json; charset=utf-8".toMediaType()
+
+        val request = Request.Builder()
+            .url(urlString)
+            .get()
+            .build()
+
+        val response = client.newCall(request).execute()
+        if (response.isSuccessful) {
+            return response.body.string() ?: ""
+        } else {
+            throw Exception("HTTP POST request failed with response code: ${response.code}")
+        }
     }
 
     private fun startCallingEveryFourSeconds() {
@@ -244,12 +283,15 @@ class OngoingSessionView : AppCompatActivity() {
                             outputResult = recordEvent.outputResults
 
                             isRecording = false
-
+                            val sessionId = intent.getStringExtra("sessionID")
                             // run the skeleton extraction in background thread and send the result to firestore
-                            RunSkeleonExtraction().runSkeleonExtractionInBackgroundThread(
-                                recordEvent.outputResults.outputUri,
-                                this
-                            )
+                            if (sessionId != null) {
+                                RunSkeleonExtraction().runSkeleonExtractionInBackgroundThread(
+                                    sessionId,
+                                    recordEvent.outputResults.outputUri,
+                                    this
+                                )
+                            }
 
                             // delete the video file from the media store
                             val contentResolver = this.contentResolver
@@ -304,44 +346,6 @@ class OngoingSessionView : AppCompatActivity() {
         dialog.show()
     }
 
-    fun apiCallCreateTranslation(message: String) {
-
-        val serverURL: String = "https://backend-be-my-voice.azurewebsites.net/api/translation/create-translation"
-        val url = URL(serverURL)
-        val connection = url.openConnection() as HttpURLConnection
-        connection.requestMethod = "POST"
-        connection.connectTimeout = 300000
-        connection.doOutput = true
-
-        val postData: ByteArray = message.toByteArray(StandardCharsets.UTF_8)
-
-        connection.setRequestProperty("charset", "utf-8")
-        connection.setRequestProperty("Content-length", postData.size.toString())
-        connection.setRequestProperty("Content-Type", "application/json")
-
-        try {
-            val outputStream: DataOutputStream = DataOutputStream(connection.outputStream)
-            outputStream.write(postData)
-            outputStream.flush()
-        } catch (exception: Exception) {
-
-        }
-
-        if (connection.responseCode != HttpURLConnection.HTTP_OK && connection.responseCode != HttpURLConnection.HTTP_CREATED) {
-            try {
-                val inputStream: DataInputStream = DataInputStream(connection.inputStream)
-                val reader: BufferedReader = BufferedReader(InputStreamReader(inputStream))
-                val output: String = reader.readLine()
-
-                println("There was error while connecting the server $output")
-                System.exit(0)
-
-            } catch (exception: Exception) {
-                throw Exception("Exception while saving in backend  $exception.message")
-            }
-        }
-
-    }
 
 
     // Function: Capture Video For Four Seconds

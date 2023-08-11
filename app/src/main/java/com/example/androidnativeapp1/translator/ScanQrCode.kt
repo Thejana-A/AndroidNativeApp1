@@ -75,7 +75,8 @@ data class Session(
     val user: User,
     @SerializedName("startDate") val startDate: String,
     @SerializedName("endDate") val endDate: String,
-    val status: String
+    val status: String,
+    val translatedText: String
 )
 
 data class ApiResponse(
@@ -90,6 +91,8 @@ data class ApiResponse(
 class ScanQrCode : AppCompatActivity() {
     private val client = OkHttpClient()
     var httpResponse = ""
+    var sessionID = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.scan_qr_code)
@@ -99,8 +102,8 @@ class ScanQrCode : AppCompatActivity() {
         majorLayout.startAnimation(fadeInAnimation)
 
         val userID = "f69deaaf-5c41-4ba2-8bad-e44e026b516b"
-        val urlToApi = "https://backend-be-my-voice.azurewebsites.net/api/session/create-session"
-        val requestBody = "{\"userID\":\"f69deaaf-5c41-4ba2-8bad-e44e026b516b\"}"
+        val urlToApi = "https://api-be-my-voice.azurewebsites.net/api/session/create-session"
+        val requestBody = "{\"userID\":\"$userID\"}"
 
         val scanQrCodeDescription: TextView = findViewById(R.id.scanQrCodeDescription)
         try {
@@ -109,8 +112,8 @@ class ScanQrCode : AppCompatActivity() {
                 Log.d("httpResponse", httpResponse)
                 val gson = Gson()
                 val apiResponse = gson.fromJson(httpResponse, ApiResponse::class.java)
-
-                scanQrCodeDescription.text = apiResponse.data[0].sessionId
+                sessionID = apiResponse.data[0].sessionId
+                scanQrCodeDescription.text = sessionID
             }
 
         } catch (e: Exception) {
@@ -118,14 +121,16 @@ class ScanQrCode : AppCompatActivity() {
         }
 
         //Enter the URL containing session ID returned by response
-        val urlForQrLink = "https://cmb.ac.lk/category/ucsc"
+        val urlForQrLink = "https://normal-user-web.vercel.app"+sessionID
         val qrCodeBitmap = generateQRCode(urlForQrLink)
         val imageView = findViewById<ImageView>(R.id.QRImageView)
         imageView.setImageBitmap(qrCodeBitmap)
 
         val generateNewQrCode: Button = findViewById(R.id.generateNewQrCode)
         generateNewQrCode.setOnClickListener {
-            startActivity(Intent(this, SessionStartView::class.java))
+            var intent = Intent(this, SessionStartView::class.java)
+            intent.putExtra("sessionID", sessionID)
+            startActivity(intent)
         }
 
         val leftDrawerIcon: ImageView = findViewById(R.id.leftDrawerIcon)
@@ -207,32 +212,7 @@ class ScanQrCode : AppCompatActivity() {
         }
     }
 
-    fun makePostApiCall() {
-        val userID = "f69deaaf-5c41-4ba2-8bad-e44e026b516b"
-        val urlToApi = "https://backend-be-my-voice.azurewebsites.net/api/session/create-session"
 
-        val requestBody = """
-        {
-            "userid": "$userID"
-        }
-    """.trimIndent()
-
-        val mediaType = "application/json; charset=utf-8".toMediaType()
-        val request = Request.Builder()
-            .url(urlToApi)
-            .post(requestBody.toRequestBody(mediaType))
-            .build()
-
-        val client = OkHttpClient()
-        val response = client.newCall(request).execute()
-
-        val responseBody = response.body?.string()
-        if (responseBody != null) {
-            Log.d("httpResponse", responseBody)
-        }else{
-            Log.d("httpResponse", "null")
-        }
-    }
 
     private fun generateQRCode(url: String): Bitmap? {
         val qrCodeWriter = QRCodeWriter()
@@ -341,4 +321,3 @@ class ScanQrCode : AppCompatActivity() {
     }
 
 }
-

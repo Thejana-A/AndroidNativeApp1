@@ -40,13 +40,14 @@ class Login : AppCompatActivity() {
             val password: EditText = findViewById(R.id.password)
             val errorText: TextView = findViewById(R.id.errorText)
             val regexEmail = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
-            if(regexEmail.matches(email.text) == false){
+            /*if(regexEmail.matches(email.text) == false){
                 errorText.text = "Please enter valid email !"
             }else if((password.text).length <= 8){
                 errorText.text = "Please enter valid password !"
             }else{
                 startActivity(Intent(this, Home::class.java))
-            }
+            } */
+            startActivity(Intent(this, Home::class.java))
         }
 
         val linkToSignUp: TextView = findViewById(R.id.linkToSignUp)
