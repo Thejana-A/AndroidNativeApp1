@@ -38,6 +38,10 @@ class Home : AppCompatActivity() {
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
 
+        var username = intent.getStringExtra("username")
+        var welcomeText = findViewById<TextView>(R.id.welcomeText)
+        welcomeText.text = "Welcome back $username!"
+
         val pieChart = findViewById<PieChart>(R.id.pieChart)
         val pieEntries = listOf(
             PieEntry(30f, "Completed"),
