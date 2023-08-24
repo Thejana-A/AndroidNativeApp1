@@ -35,9 +35,63 @@ import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
 import com.google.zxing.qrcode.QRCodeWriter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.io.BufferedReader
+import java.io.DataInputStream
+import java.io.DataOutputStream
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+import java.nio.charset.StandardCharsets
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
+import fuel.Fuel
+import fuel.post
+import kotlinx.coroutines.runBlocking
+import org.json.JSONObject
+
+data class User(
+    @SerializedName("userID") val userId: String,
+    val name: String,
+    val email: String,
+    @SerializedName("passwordHash") val passwordHash: String,
+    val role: String,
+    val status: String,
+    @SerializedName("profilePictureUrl") val profilePictureUrl: String,
+    @SerializedName("phoneNumber") val phoneNumber: String,
+    @SerializedName("dateOfBirth") val dateOfBirth: String
+)
+
+data class Session(
+    @SerializedName("sessionID") val sessionId: String,
+    @SerializedName("userID") val userId: String,
+    val user: User,
+    @SerializedName("startDate") val startDate: String,
+    @SerializedName("endDate") val endDate: String,
+    val status: String,
+    val translatedText: String
+)
+
+data class ApiResponse(
+    val code: Int,
+    val success: Boolean,
+    val message: String,
+    val data: List<Session>,
+    @SerializedName("errorMessage") val errorMessage: String?
+)
 
 
 class ScanQrCode : AppCompatActivity() {
+    private val client = OkHttpClient()
+    var httpResponse = ""
+    var sessionID = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,14 +101,36 @@ class ScanQrCode : AppCompatActivity() {
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
 
-        val url = "https://cmb.ac.lk/category/ucsc"
-        val qrCodeBitmap = generateQRCode(url)
+        val userID = "f69deaaf-5c41-4ba2-8bad-e44e026b516b"
+        val urlToApi = "https://api-be-my-voice.azurewebsites.net/api/session/create-session"
+        val requestBody = "{\"userID\":\"$userID\"}"
+
+        val scanQrCodeDescription: TextView = findViewById(R.id.scanQrCodeDescription)
+        try {
+            GlobalScope.launch(Dispatchers.IO) {
+                httpResponse = apiCallCreateSession(urlToApi, requestBody)
+                Log.d("httpResponse", httpResponse)
+                val gson = Gson()
+                val apiResponse = gson.fromJson(httpResponse, ApiResponse::class.java)
+                sessionID = apiResponse.data[0].sessionId
+                scanQrCodeDescription.text = sessionID
+            }
+
+        } catch (e: Exception) {
+            scanQrCodeDescription.text = e.toString()
+        }
+
+        //Enter the URL containing session ID returned by response
+        val urlForQrLink = "https://normal-user-web.vercel.app"+sessionID
+        val qrCodeBitmap = generateQRCode(urlForQrLink)
         val imageView = findViewById<ImageView>(R.id.QRImageView)
         imageView.setImageBitmap(qrCodeBitmap)
 
         val generateNewQrCode: Button = findViewById(R.id.generateNewQrCode)
         generateNewQrCode.setOnClickListener {
-            startActivity(Intent(this, SessionStartView::class.java))
+            var intent = Intent(this, SessionStartView::class.java)
+            intent.putExtra("sessionID", sessionID)
+            startActivity(intent)
         }
 
         val leftDrawerIcon: ImageView = findViewById(R.id.leftDrawerIcon)
@@ -74,18 +150,22 @@ class ScanQrCode : AppCompatActivity() {
                     startActivity(Intent(this, Home::class.java))
                     true
                 }
+
                 R.id.camera_tab -> {
                     startActivity(Intent(this, ScanQrCode::class.java))
                     true
                 }
+
                 R.id.learn_tab -> {
                     startActivity(Intent(this, ListOfLessons::class.java))
                     true
                 }
+
                 R.id.chat_tab -> {
                     startActivity(Intent(this, ChatInitialPage::class.java))
                     true
                 }
+
                 else -> false
             }
         }
@@ -132,6 +212,8 @@ class ScanQrCode : AppCompatActivity() {
         }
     }
 
+
+
     private fun generateQRCode(url: String): Bitmap? {
         val qrCodeWriter = QRCodeWriter()
         try {
@@ -141,7 +223,15 @@ class ScanQrCode : AppCompatActivity() {
             val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
             for (x in 0 until width) {
                 for (y in 0 until height) {
-                    bmp.setPixel(x, y, if (bitMatrix.get(x, y)) resources.getColor(R.color.black) else resources.getColor(R.color.white))
+                    bmp.setPixel(
+                        x,
+                        y,
+                        if (bitMatrix.get(
+                                x,
+                                y
+                            )
+                        ) resources.getColor(R.color.black) else resources.getColor(R.color.white)
+                    )
                 }
             }
             return bmp
@@ -170,6 +260,22 @@ class ScanQrCode : AppCompatActivity() {
             dialog.dismiss()
         }
         dialog.show()
+    }
+
+    fun apiCallCreateSession(urlString: String, requestBody: String): String {
+        val mediaType = "application/json; charset=utf-8".toMediaType()
+
+        val request = Request.Builder()
+            .url(urlString)
+            .post(requestBody.toRequestBody(mediaType))
+            .build()
+
+        val response = client.newCall(request).execute()
+        if (response.isSuccessful) {
+            return response.body?.string() ?: ""
+        } else {
+            throw Exception("HTTP POST request failed with response code: ${response.code}")
+        }
     }
 
     private fun checkPermissions() {
@@ -215,4 +321,3 @@ class ScanQrCode : AppCompatActivity() {
     }
 
 }
-

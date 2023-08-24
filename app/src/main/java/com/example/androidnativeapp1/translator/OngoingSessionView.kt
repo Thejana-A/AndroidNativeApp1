@@ -24,6 +24,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 
 import android.provider.MediaStore
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -53,12 +54,20 @@ import java.net.URL
 import java.nio.charset.StandardCharsets
 
 import com.example.androidnativeapp1.utilities.RunSkeleonExtraction
+import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-
 
 class OngoingSessionView : AppCompatActivity() {
 
@@ -71,6 +80,13 @@ class OngoingSessionView : AppCompatActivity() {
 
     private var isRecording: Boolean = false
     private var isLeaveSession: Boolean = false
+    private var recordingState: Boolean = false
+
+    private val handler = Handler()
+    private lateinit var runnable: Runnable
+
+    private val client = OkHttpClient()
+    var httpResponse: String = ""
 
     @SuppressLint("MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,23 +108,82 @@ class OngoingSessionView : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
 
-        // set on click listener for the button of capture photo
-        // it calls a method which is implemented below
-        findViewById<Button>(R.id.leaveSession).setOnClickListener {
-            captureVideoForFourSeconds();
-//            isLeaveSession = true
-            // pop the current activity from the stack
-//            finish()
-        }
-
         // TODO: set on click listener for the button of leave session @Thejana-A
         // TODO: call the video capture method every 4 seconds and run the skeleton extraction in background thread @Thejana-A
         // TODO: implement all the HTTP requests to send the data to the server @Thejana-A
         // TODO: implement the UI for the ongoing session view @Thejana-A
 
+        val pauseButton = findViewById<Button>(R.id.pauseButton)
+        pauseButton.setOnClickListener {
+            if(recordingState == true){
+                recordingState = false
+                pauseButton.text = "Resume"
+                pauseCallingEveryFourSeconds()
+            }else{
+                pauseButton.text = "Pause"
+                recordingState = true
+                startCallingEveryFourSeconds()
+                GlobalScope.launch(Dispatchers.IO) {
+                    val sessionID = intent.getStringExtra("sessionID")
+                    val url = "https://api-be-my-voice.azurewebsites.net/api/translation/get-translation-by-session/$sessionID"
+                    httpResponse = apiCallGetTranslationBySession(url)
+                    Log.d("httpResponse", httpResponse)
+                    val gson = Gson()
+                    val apiResponse = gson.fromJson(httpResponse, ApiResponse::class.java)
+                    val translationTextView = findViewById<TextView>(R.id.translationTextView)
+                    translationTextView.text = apiResponse.data[0].translatedText
+                    Log.d("apiResponse", apiResponse.data[0].translatedText)
+                }
+            }
+//            isLeaveSession = true
+            // pop the current activity from the stack
+//            finish()
+        }
+
+        // set on click listener for the button of leave session
+        // it calls a method which is implemented below
+        findViewById<Button>(R.id.leaveSession).setOnClickListener {
+            cancelSessionDialog()
+//            isLeaveSession = true
+            // pop the current activity from the stack
+//            finish()
+        }
+
         outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
+
+    fun apiCallGetTranslationBySession(urlString: String): String {
+        val mediaType = "application/json; charset=utf-8".toMediaType()
+
+        val request = Request.Builder()
+            .url(urlString)
+            .get()
+            .build()
+
+        val response = client.newCall(request).execute()
+        if (response.isSuccessful) {
+            return response.body.string() ?: ""
+        } else {
+            throw Exception("HTTP POST request failed with response code: ${response.code}")
+        }
+    }
+
+    private fun startCallingEveryFourSeconds() {
+        runnable = object : Runnable {
+            override fun run() {
+                captureVideoForFourSeconds()
+                handler.postDelayed(this, 5000) // since it takes 5 seconds to record 4 seconds video
+            }
+        }
+        handler.post(runnable)
+    }
+
+    private fun pauseCallingEveryFourSeconds() {
+        handler.removeCallbacks(runnable)
+    }
+
+
 
     override fun onResume() {
         super.onResume()
@@ -141,12 +216,12 @@ class OngoingSessionView : AppCompatActivity() {
             videoCapture = VideoCapture.withOutput(recorder)
 
             // Select front camera as a default camera
-            var cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            var cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
 
             try {
 //                cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
             } catch (exc: Exception) {
-                cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+                cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
             }
 
             try {
@@ -208,12 +283,15 @@ class OngoingSessionView : AppCompatActivity() {
                             outputResult = recordEvent.outputResults
 
                             isRecording = false
-
+                            val sessionId = intent.getStringExtra("sessionID")
                             // run the skeleton extraction in background thread and send the result to firestore
-                            RunSkeleonExtraction().runSkeleonExtractionInBackgroundThread(
-                                recordEvent.outputResults.outputUri,
-                                this
-                            )
+                            if (sessionId != null) {
+                                RunSkeleonExtraction().runSkeleonExtractionInBackgroundThread(
+                                    sessionId,
+                                    recordEvent.outputResults.outputUri,
+                                    this
+                                )
+                            }
 
                             // delete the video file from the media store
                             val contentResolver = this.contentResolver
@@ -268,44 +346,6 @@ class OngoingSessionView : AppCompatActivity() {
         dialog.show()
     }
 
-    fun postApiCall(message: String) {
-
-        val serverURL: String = "your URL"
-        val url = URL(serverURL)
-        val connection = url.openConnection() as HttpURLConnection
-        connection.requestMethod = "POST"
-        connection.connectTimeout = 300000
-        connection.doOutput = true
-
-        val postData: ByteArray = message.toByteArray(StandardCharsets.UTF_8)
-
-        connection.setRequestProperty("charset", "utf-8")
-        connection.setRequestProperty("Content-length", postData.size.toString())
-        connection.setRequestProperty("Content-Type", "application/json")
-
-        try {
-            val outputStream: DataOutputStream = DataOutputStream(connection.outputStream)
-            outputStream.write(postData)
-            outputStream.flush()
-        } catch (exception: Exception) {
-
-        }
-
-        if (connection.responseCode != HttpURLConnection.HTTP_OK && connection.responseCode != HttpURLConnection.HTTP_CREATED) {
-            try {
-                val inputStream: DataInputStream = DataInputStream(connection.inputStream)
-                val reader: BufferedReader = BufferedReader(InputStreamReader(inputStream))
-                val output: String = reader.readLine()
-
-                println("There was error while connecting the server $output")
-                System.exit(0)
-
-            } catch (exception: Exception) {
-                throw Exception("Exception while saving in backend  $exception.message")
-            }
-        }
-
-    }
 
 
     // Function: Capture Video For Four Seconds

@@ -35,6 +35,7 @@
                 android:textColor="#ADB3BC"
                 android:text="Session ID" />
             <TextView
+                android:id="@+id/sessionIdTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="22dp"

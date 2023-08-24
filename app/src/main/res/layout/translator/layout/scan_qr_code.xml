@@ -29,6 +29,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Scan QR Code" />
             <TextView
+                android:id="@+id/scanQrCodeDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"

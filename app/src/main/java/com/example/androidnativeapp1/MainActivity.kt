@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        startActivity(Intent(this, Onboarding1::class.java))
         setContentView(R.layout.activity_main)
-
 
         val logoImage: ImageView = findViewById(R.id.logoImage)
         logoImage.setOnClickListener {

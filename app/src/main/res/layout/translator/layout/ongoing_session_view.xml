@@ -33,11 +33,20 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:orientation="vertical">
-                    <ImageView
+                    <TextView
+                        android:id="@+id/translationTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#555555"
+                        android:text="" />
+                    <!--<ImageView
                         android:layout_width="285dp"
                         android:layout_height="225dp"
                         android:layout_marginTop="10dp"
-                        app:srcCompat="@drawable/ongoing_session_sample_image" />
+                        app:srcCompat="@drawable/ongoing_session_sample_image" /> -->
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -69,7 +78,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <Button
-                android:id="@+id/leaveSession"
+                android:id="@+id/pauseButton"
                 android:layout_width="250dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="10dp"
@@ -77,6 +86,19 @@
                 android:backgroundTint="#FFFFFF"
                 android:textSize="16dp"
                 android:textColor="#FF0000"
+                app:strokeColor="#FF0000"
+                app:strokeWidth="2dp"
+                android:text="Start"
+                />
+
+            <Button
+                android:id="@+id/leaveSession"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#FF0000"
+                android:textSize="16dp"
+                android:textColor="#FFFFFF"
                 app:strokeColor="#FF0000"
                 app:strokeWidth="2dp"
                 android:text="Leave Session"
