@@ -2,6 +2,7 @@ package com.example.androidnativeapp1.learn
 
 import android.app.Dialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import android.view.animation.AlphaAnimation
@@ -9,7 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.MediaController
 import android.widget.TextView
+import android.widget.VideoView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.androidnativeapp1.ConfirmLogoutLayout
@@ -34,6 +37,21 @@ class OngoingLesson : AppCompatActivity() {
         fadeInAnimation.duration = 1000
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
+
+        var lessonHeading = intent.getStringExtra("lesson_name")
+        var lessonName = intent.getStringExtra("sub_lesson_name")
+        var lessonHeadingTextView = findViewById<TextView>(R.id.lessonHeading)
+        var lessonTitle = findViewById<TextView>(R.id.lessonTitle)
+        lessonTitle.text = lessonName
+        lessonHeadingTextView.text = lessonHeading
+
+        val videoView = findViewById<VideoView>(R.id.videoView)
+        val videoPath = intent.getStringExtra("sub_lesson_video")
+        val mediaController = MediaController(this)
+        mediaController.setAnchorView(videoView)
+        videoView.setMediaController(mediaController)
+        videoView.setVideoURI(Uri.parse(videoPath))
+        videoView.start()
 
 
         val backButton: TextView = findViewById(R.id.backButton)

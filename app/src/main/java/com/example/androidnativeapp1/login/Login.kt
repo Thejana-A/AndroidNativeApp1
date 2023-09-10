@@ -77,15 +77,15 @@ class Login : AppCompatActivity() {
                     val loginMessage = apiResponse.message
                     when (loginMessage) {
                         "User logged in" ->
-                            {   val userID = apiResponse.data[0].user.userId
-                                val username = apiResponse.data[0].user.name
-                                Log.d("userID", userID)
-                                var intent = Intent(this@Login, Home::class.java)
-                                intent.putExtra("userID", userID)
-                                intent.putExtra("username", username)
-                                startActivity(intent)
-                                //startActivity(Intent(this@Login, Home::class.java))
-                            }
+                        {   val userID = apiResponse.data[0].user.userId
+                            val username = apiResponse.data[0].user.name
+                            Log.d("userID", userID)
+                            var intent = Intent(this@Login, Home::class.java)
+                            intent.putExtra("userID", userID)
+                            intent.putExtra("username", username)
+                            startActivity(intent)
+                            //startActivity(Intent(this@Login, Home::class.java))
+                        }
                         "Invalid Credentials" -> toastInvalidCredentials.show()
                         else -> toastServerError.show()
                     }

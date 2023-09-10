@@ -1,5 +1,6 @@
 package com.example.androidnativeapp1.learn
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +13,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.androidnativeapp1.ConfirmLogoutLayout
 import com.example.androidnativeapp1.HelpCenter
 import com.example.androidnativeapp1.LeftDrawerLayout
@@ -20,13 +23,18 @@ import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.home.Home
 import com.example.androidnativeapp1.login.Login
 import com.example.androidnativeapp1.settings.Profile
+import com.example.androidnativeapp1.translator.ApiResponse
 import com.example.androidnativeapp1.translator.ScanQrCode
 import com.example.androidnativeapp1.video_chat.ChatInitialPage
+import com.example.androidnativeapp1.learn.LessonAdapter
+import com.example.androidnativeapp1.learn.LessonViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
+import com.google.gson.Gson
+import org.json.JSONObject
 
 class ListOfLessons : AppCompatActivity() {
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_of_lessons)
@@ -39,6 +47,32 @@ class ListOfLessons : AppCompatActivity() {
         linkToListOfSubLessons.setOnClickListener {
             startActivity(Intent(this, ListOfSubLessons::class.java))
         }
+
+        val lessonList = "{data : [{\"lesson_image\":\"lesson_1_icon\", \"lesson_name\":\"Days of week\", \"completed_status\":\"Not completed\"}, {\"lesson_image\":\"lesson_2_icon\", \"lesson_name\":\"Verbs\", \"completed_status\":\"Completed\"}] }"
+        var lessonListString = ""
+
+        val recyclerview = findViewById<RecyclerView>(R.id.lessonRecyclerView)
+        recyclerview.layoutManager = LinearLayoutManager(this)
+
+        // ArrayList of class ItemsViewModel
+        val lessonData = ArrayList<LessonViewModel>()
+
+        try {
+            val jsonObject = JSONObject(lessonList)
+            val lessonsArray = jsonObject.getJSONArray("data")
+
+            for (i in 0 until lessonsArray.length()) {
+                val lessonObject = lessonsArray.getJSONObject(i)
+                val lessonName = lessonObject.getString("lesson_name")
+                val completedStatus = lessonObject.getString("completed_status")
+                lessonData.add(LessonViewModel("$lessonName", "$completedStatus"))
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        val adapter = LessonAdapter(lessonData)
+        recyclerview.adapter = adapter
 
         val quizButton: Button = findViewById(R.id.quizButton)
         quizButton.setOnClickListener {

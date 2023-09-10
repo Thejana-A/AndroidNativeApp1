@@ -32,7 +32,8 @@ class Chat : AppCompatActivity() {
 
         val viewChatConversation: ImageView = findViewById(R.id.backButton)
         viewChatConversation.setOnClickListener {
-            startActivity(Intent(this, ChatList::class.java))
+            //startActivity(Intent(this, ChatList::class.java))
+            finish()
         }
 
         val viewChatOptions: LinearLayout = findViewById(R.id.viewChatOptions)

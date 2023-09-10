@@ -48,6 +48,10 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="title_activity_sub_lesson_adapter">SubLessonAdapter</string>
+    <string name="title_activity_sub_lesson_view_model">SubLessonViewModel</string>
+    <string name="title_activity_lesson_view_model">LessonViewModel</string>
+    <string name="title_activity_lesson_adapter">LessonAdapter</string>
     <string name="title_activity_checkout">CheckoutActivity</string>
     <string name="title_activity_help_center">HelpCenter</string>
     <string name="title_activity_notification_settings">NotificationSettings</string>

@@ -49,6 +49,7 @@
                     android:layout_marginTop="10dp"
                     app:srcCompat="@drawable/lesson_1_icon" />
                 <TextView
+                    android:id="@+id/lessonHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="22sp"
@@ -88,11 +89,16 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:orientation="vertical">
-                            <ImageView
+                            <VideoView
+                                android:id="@+id/videoView"
+                                android:layout_width="285dp"
+                                android:layout_height="225dp" />
+                            <!--<ImageView
                                 android:layout_width="285dp"
                                 android:layout_height="225dp"
-                                app:srcCompat="@drawable/sign_lang_sample" />
+                                app:srcCompat="@drawable/sign_lang_sample" /> -->
                             <TextView
+                                android:id="@+id/lessonTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Monday"
