@@ -25,6 +25,16 @@
         android:theme="@style/Theme.AndroidNativeApp1"
         tools:targetApi="31">
         <activity
+            android:name=".learn.QuizAdapter"
+            android:exported="false"
+            android:label="@string/title_activity_quiz_adapter"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
+            android:name=".learn.QuizViewModel"
+            android:exported="false"
+            android:label="@string/title_activity_quiz_view_model"
+            android:theme="@style/Theme.AndroidNativeApp1" />
+        <activity
             android:name=".learn.SubLessonAdapter"
             android:exported="false"
             android:label="@string/title_activity_sub_lesson_adapter"

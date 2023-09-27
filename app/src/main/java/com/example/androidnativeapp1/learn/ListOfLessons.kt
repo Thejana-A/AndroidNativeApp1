@@ -15,21 +15,15 @@ import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidnativeapp1.ConfirmLogoutLayout
 import com.example.androidnativeapp1.HelpCenter
-import com.example.androidnativeapp1.LeftDrawerLayout
 import com.example.androidnativeapp1.Notifications
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.home.Home
 import com.example.androidnativeapp1.login.Login
 import com.example.androidnativeapp1.settings.Profile
-import com.example.androidnativeapp1.translator.ApiResponse
 import com.example.androidnativeapp1.translator.ScanQrCode
 import com.example.androidnativeapp1.video_chat.ChatInitialPage
-import com.example.androidnativeapp1.learn.LessonAdapter
-import com.example.androidnativeapp1.learn.LessonViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.gson.Gson
 import org.json.JSONObject
 
 class ListOfLessons : AppCompatActivity() {
@@ -43,12 +37,12 @@ class ListOfLessons : AppCompatActivity() {
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
 
-        val linkToListOfSubLessons: CardView = findViewById(R.id.linkToListOfSubLessons)
+        /*val linkToListOfSubLessons: CardView = findViewById(R.id.linkToListOfSubLessons)
         linkToListOfSubLessons.setOnClickListener {
             startActivity(Intent(this, ListOfSubLessons::class.java))
-        }
+        } */
 
-        val lessonList = "{data : [{\"lesson_image\":\"lesson_1_icon\", \"lesson_name\":\"Days of week\", \"completed_status\":\"Not completed\"}, {\"lesson_image\":\"lesson_2_icon\", \"lesson_name\":\"Verbs\", \"completed_status\":\"Completed\"}] }"
+        val lessonList = "{data : [{\"lesson_image\":\"lesson_1_icon\", \"lesson_name\":\"Days of week\", \"completed_status\":\"Not completed\"}, {\"lesson_image\":\"lesson_2_icon\", \"lesson_name\":\"Verbs\", \"completed_status\":\"Completed\"}, {\"lesson_image\":\"lesson_1_icon\", \"lesson_name\":\"Nouns\", \"completed_status\":\"Not completed\"}] }"
         var lessonListString = ""
 
         val recyclerview = findViewById<RecyclerView>(R.id.lessonRecyclerView)

@@ -35,6 +35,9 @@ class OngoingQuiz : AppCompatActivity() {
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
 
+        var quizName = intent.getStringExtra("quiz_name")
+        var quizTitle = findViewById<TextView>(R.id.quizTitle)
+        quizTitle.text = "$quizName"
 
         val backButton: TextView = findViewById(R.id.backButton)
         backButton.setOnClickListener {

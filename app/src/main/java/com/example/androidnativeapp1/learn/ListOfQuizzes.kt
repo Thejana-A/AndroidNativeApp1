@@ -1,5 +1,6 @@
 package com.example.androidnativeapp1.learn
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -10,11 +11,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.androidnativeapp1.ConfirmLogoutLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.androidnativeapp1.HelpCenter
-import com.example.androidnativeapp1.LeftDrawerLayout
 import com.example.androidnativeapp1.Notifications
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.home.Home
@@ -23,10 +23,12 @@ import com.example.androidnativeapp1.settings.Profile
 import com.example.androidnativeapp1.translator.ScanQrCode
 import com.example.androidnativeapp1.video_chat.ChatInitialPage
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.json.JSONObject
 
 
 class ListOfQuizzes : AppCompatActivity() {
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_of_quizzes)
@@ -35,10 +37,42 @@ class ListOfQuizzes : AppCompatActivity() {
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
 
-        val linkToQuiz: Button = findViewById(R.id.linkToQuiz)
-        linkToQuiz.setOnClickListener {
+        /*val linkToStartQuiz: Button = findViewById(R.id.linkToStartQuiz)
+        linkToStartQuiz.setOnClickListener {
             startActivity(Intent(this, OngoingQuiz::class.java))
+        } */
+
+        val quizList = "{data : [{\"quiz_name\":\"Days of week\", \"completed_status\":\"Not completed\", \"number_of_questions\":\"7\"}, {\"quiz_name\":\"Verbs\", \"completed_status\":\"completed\", \"number_of_questions\":\"15\"}, {\"quiz_name\":\"Animals\", \"completed_status\":\"completed\", \"number_of_questions\":\"15\"}] }"
+        var quizListString = ""
+
+        val recyclerview = findViewById<RecyclerView>(R.id.quizRecyclerView)
+        recyclerview.layoutManager = LinearLayoutManager(this)
+
+        // ArrayList of class ItemsViewModel
+        val quizData = ArrayList<QuizViewModel>()
+        var buttonState = ""
+
+        try {
+            val jsonObject = JSONObject(quizList)
+            val quizArray = jsonObject.getJSONArray("data")
+
+            for (i in 0 until quizArray.length()) {
+                val quizObject = quizArray.getJSONObject(i)
+                val quizName = quizObject.getString("quiz_name")
+                val completedStatus = quizObject.getString("completed_status")
+                if(completedStatus == "Not completed"){
+                    buttonState = "Start"
+                }else{
+                    buttonState = "Completed"
+                }
+                quizData.add(QuizViewModel("$quizName", "$buttonState"))
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
+
+        val adapter = QuizAdapter(quizData)
+        recyclerview.adapter = adapter
 
         val lessonsButton: Button = findViewById(R.id.lessonsButton)
         lessonsButton.setOnClickListener {
