@@ -37,11 +37,11 @@ class ContactAdapter(private val mList: List<ContactViewModel>) : RecyclerView.A
             intent.putExtra("contact_name", ContactViewModel.name);
             holder.viewChatConversation.context.startActivity(intent)
         }
-        holder.inviteFriendButton.setOnClickListener {
+        /*holder.inviteFriendButton.setOnClickListener {
             val intent = Intent(holder.inviteFriendButton.context, ContactList::class.java)
             intent.putExtra("invite_status", "true");
             holder.inviteFriendButton.context.startActivity(intent)
-        }
+        } */
 
     }
 
@@ -54,7 +54,7 @@ class ContactAdapter(private val mList: List<ContactViewModel>) : RecyclerView.A
         val name: TextView = itemView.findViewById(R.id.name)
         val contactNo: TextView = itemView.findViewById(R.id.contactNo)
         val viewChatConversation: CardView = itemView.findViewById(R.id.viewChatConversation)
-        val inviteFriendButton: Button = itemView.findViewById(R.id.inviteFriendButton)
+        //val inviteFriendButton: Button = itemView.findViewById(R.id.inviteFriendButton)
     }
 
 }

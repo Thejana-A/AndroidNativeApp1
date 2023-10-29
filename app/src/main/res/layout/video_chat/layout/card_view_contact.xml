@@ -50,7 +50,7 @@
                 android:textColor="#000000"
                 android:textSize="12sp" />
         </LinearLayout>
-        <Button
+        <!--<Button
             android:id="@+id/inviteFriendButton"
             android:layout_width="80dp"
             android:layout_height="40dp"
@@ -58,7 +58,7 @@
             android:layout_marginTop="15dp"
             android:textSize="10dp"
             android:backgroundTint="#147B72"
-            android:text="Invite" />
+            android:text="Invite" /> -->
         <!--<Button
             android:layout_width="60dp"
             android:layout_height="40dp"

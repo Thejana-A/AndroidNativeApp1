@@ -12,18 +12,23 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.androidnativeapp1.ConfirmLogoutLayout
 import com.example.androidnativeapp1.HelpCenter
 import com.example.androidnativeapp1.LeftDrawerLayout
 import com.example.androidnativeapp1.Notifications
 import com.example.androidnativeapp1.R
 import com.example.androidnativeapp1.home.Home
+import com.example.androidnativeapp1.learn.LessonAdapter
+import com.example.androidnativeapp1.learn.LessonViewModel
 import com.example.androidnativeapp1.learn.ListOfLessons
 import com.example.androidnativeapp1.learn.OngoingQuiz
 import com.example.androidnativeapp1.login.Login
 import com.example.androidnativeapp1.settings.Profile
 import com.example.androidnativeapp1.translator.ScanQrCode
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.json.JSONObject
 
 
 class ChatList : AppCompatActivity() {
@@ -36,10 +41,35 @@ class ChatList : AppCompatActivity() {
         val majorLayout = findViewById<ConstraintLayout>(R.id.majorLayout)
         majorLayout.startAnimation(fadeInAnimation)
 
-        val viewChatConversation: CardView = findViewById(R.id.viewChatConversation)
+        val chatList = "{data : [{\"name\":\"abc\", \"phoneNumber\":\"0774 719 096\"}, {\"name\":\"def\", \"phoneNumber\":\"0774 719 097\"}, {\"name\":\"ghi\", \"phoneNumber\":\"0774 719 098\"}] }"
+        var chatListString = ""
+
+        val recyclerview = findViewById<RecyclerView>(R.id.recyclerview)
+        recyclerview.layoutManager = LinearLayoutManager(this)
+
+        // ArrayList of class ItemsViewModel
+        val chatData = ArrayList<ContactViewModel>()
+        try {
+            val jsonObject = JSONObject(chatList)
+            val chatArray = jsonObject.getJSONArray("data")
+
+            for (i in 0 until chatArray.length()) {
+                val chatObject = chatArray.getJSONObject(i)
+                val name = chatObject.getString("name")
+                val contactNumber = chatObject.getString("phoneNumber")
+                chatData.add(ContactViewModel(R.drawable.profile_picture,"$name", "$contactNumber"))
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        val adapter = ContactAdapter(chatData)
+        recyclerview.adapter = adapter
+
+        /*val viewChatConversation: CardView = findViewById(R.id.viewChatConversation)
         viewChatConversation.setOnClickListener {
             startActivity(Intent(this, Chat::class.java))
-        }
+        } */
 
         val contactList: ImageView = findViewById(R.id.contactList)
         contactList.setOnClickListener {
